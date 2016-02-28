@@ -1,6 +1,6 @@
 <?php 
 
-function Teste(){
+function Teste($a){
 	
 }
 
