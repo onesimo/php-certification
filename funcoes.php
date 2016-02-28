@@ -1,1 +1,7 @@
-novo php
+<?php 
+
+function Teste(){
+	
+}
+
+?>
