@@ -1,9 +1,7 @@
 <?php  
 /*
 Which encryption is recommended if your application needs to store database credentials
-*/
-
-
+*/ 
 
 /*
 

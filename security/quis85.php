@@ -2,8 +2,7 @@
 /*
 Complete the following statements to make it true in comparison to HTTP connections, HTTPs connections are ...?
 */
-
-
+ 
 
 /*
 
