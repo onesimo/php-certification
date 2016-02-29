@@ -180,5 +180,62 @@ Password Hashing API options
 
 	Option salt: provide a custo salt for the hashing insted of automatically generated one (usually not recommended)
 
+File Uploads
+	$_FILES is filled with user-supplied data!
+		The file name could be forged
+			Use sanity checks and basename()
+		The file MIME type could be forged
+			if possible, ignore it
+		Under some special configurations, even the temporary file name could be forged
+			Make sure to use *_uploaded_file() functions
+
+PHP as a CGI Binary
+	There are built-in features to safeguard against common attack schemmes involving interpreters
+
+	Accessing system files: PHP does not interpret command line arguments passed by the interpreter to the CGI interface
+
+	Acessing private documents: Runtime directives cgi.force_redirect, doc_root, user_dir can be used to overcome security vulnerabilities in server setup when dealing with restricted directories
+
+	Accessing public files: The option - enable-force-cgi-redirect can be added to the Config script for servers that do not allow redirects or do not have a way to confirm a request has been safely redirected
+
+	Directly calling PHP: cgi.force_redirect blocks ability to call PHP directly from a URL
+
+Active Content(scripts, executables)
+	Establish separate script directory for executables, to avoid issues with displaying active content as HTML
+
+	Set document root using doc_root in the Config file or set environment variable php_document_roof (files oppened with doc_root and request path info)
+
+	or
+
+	Utilize user_dir with (when unset) will cause a requested file to open under the doc_root and not the user's home directory
+
+PHP as na Apache Module
+	PHP in this configuration will inherit the permissions structure of the apache server. Common security steps include:
+
+	Set the apache authorization (vs. using the default 'nobody' setting) 
+	Create an access model using .htaccess files, LDAP
+
+	Do not grant a user root permission: permit sudo'ing a/o chroot'ing: use open_basedir to control directory use
+
+Data Storage
+	Database connections: SQL connections subject to SQL injections: use avoidance steps outlined earlier
+
+	Database Design: Recommendations
+		Principle of Limited Rights
+		No unnecessary exposure to the internet
+		Isolate database information in separate network segments
+		Control outgoing web server traffic
+		Change standard passwords, and encrypt
+		Read the logs
+
+Data Encryption
+	SSL(Secure Socket layer) encryption protects data as it is communicated from the client to the server
+
+	SSH(Secure Shell Protocol) encrypts the network connection between the client and the database server
+
+	Encryption of database data may be augmented with the use of the PHP extensions mcrypt and mhash
+		Encrypt data prior to insertion decrypt upon retrieval
+
+	Store data that do not need to be processed as hash values
 */
 ?>
