@@ -165,11 +165,20 @@ Examples
 
 	array(3){ 
 		['algo'] => int(1)
-		['algoName'] => string(6)
+		['algoName'] => string(6) "bcrypt"
 		['options'] => 
 		['cost'] => int(10)}
 		}
 	}
+
+Password Hashing API options
+
+	Option cost: Computational cost to calculate the has 
+		Default to 10
+		The higher, the more secure is the hash - but the longer it takes
+		Currently, values between 04 and 31 are supported
+
+	Option salt: provide a custo salt for the hashing insted of automatically generated one (usually not recommended)
 
 */
 ?>
