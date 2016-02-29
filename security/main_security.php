@@ -235,8 +235,7 @@ Data Encryption
 	SSH(Secure Shell Protocol) encrypts the network connection between the client and the database server
 
 	Encryption of database data may be augmented with the use of the PHP extensions mcrypt and mhash
-		Encrypt data prior to insertion decrypt upon retrieval
-
+		Encrypt data prior to insertion decrypt upon retrieval 
 	Store data that do not need to be processed as hash values
 */ 
 ?>
