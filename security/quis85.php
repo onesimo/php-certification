@@ -4,8 +4,7 @@ Complete the following statements to make it true in comparison to HTTP connecti
 */
  
 
-/*
-
+/* 
 A more secure and better performing
 
 B less secure and slower

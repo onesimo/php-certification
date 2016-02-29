@@ -235,7 +235,6 @@ Data Encryption
 
 	Encryption of database data may be augmented with the use of the PHP extensions mcrypt and mhash
 		Encrypt data prior to insertion decrypt upon retrieval
-
 	Store data that do not need to be processed as hash values
 */
 
