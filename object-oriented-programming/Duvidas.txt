@@ -1,0 +1,45 @@
+ Dúvidas sobre OOP um ano atrás por Wesley Willians
+
+Dúvidas sobre OOP
+Respostas
+
+    Re. Dúvidas sobre OOP 8 meses atrás por Bruno Werneck - Suporte
+
+    Olá Leandro.
+
+    É isso mesmo. O resultado será 20.
+
+    Um abraço!
+    Re. Dúvidas sobre OOP 8 meses atrás por Leandro dos Reis Oliveira
+
+     
+
+    Wesley,  
+
+    no código abaixo
+
+     
+
+    class A  
+    {
+
+            public $teste = 10;
+     }
+
+       $a = new A;
+
+       $b = $a;
+       
+       $a-teste = 15;
+       
+       $b-teste = 20;
+
+       echo $a-teste;    
+
+     
+
+      Nesta última linha, a resposta é 20 ao invés de 15 como é induzido a se pensar.  $b = $a para objetos faz o papel de referência
+
+     
+
+     
