@@ -2,7 +2,13 @@
 /*
 Which character do you need to filter when seting an email's subject to a user-supplied value to prevent email hearder injection?
 */
+<<<<<<< HEAD
  
+=======
+
+
+
+>>>>>>> origin
 /*
 
 A \r

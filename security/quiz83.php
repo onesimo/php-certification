@@ -2,7 +2,13 @@
 /*
 Where does PHP store uploaded files by default?
 */
+<<<<<<< HEAD
  
+=======
+
+
+
+>>>>>>> origin
 /*
 
 A In the system's temporary file folder //correct
