@@ -229,12 +229,14 @@ Data Storage
 		Read the logs
 
 Data Encryption
+	
 	SSL(Secure Socket layer) encryption protects data as it is communicated from the client to the server
 
 	SSH(Secure Shell Protocol) encrypts the network connection between the client and the database server
 
 	Encryption of database data may be augmented with the use of the PHP extensions mcrypt and mhash
 		Encrypt data prior to insertion decrypt upon retrieval
+
 	Store data that do not need to be processed as hash values
 */
 
