@@ -309,11 +309,3 @@ D none of the above
 */
 //Obs,: Quando você exibe ume uma índíce não existe é exibido um notice: Undefined variabçe
 echo $resul;
-
-
- 
-
-
-
-
-
