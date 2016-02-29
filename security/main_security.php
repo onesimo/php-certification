@@ -238,6 +238,5 @@ Data Encryption
 		Encrypt data prior to insertion decrypt upon retrieval
 
 	Store data that do not need to be processed as hash values
-*/
-
+*/ 
 ?>
