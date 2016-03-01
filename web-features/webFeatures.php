@@ -119,5 +119,6 @@ HTTP Authentication
 
 	To protect passwords PHP_AUTH variables are not set if external authentication is enabled for a page, and with
 	Safe Mode in general
+ 
 */ 
 ?>
