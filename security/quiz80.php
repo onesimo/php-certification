@@ -1,11 +1,7 @@
 <?php  
 /*
 What is the recommended approach when configuring database users?
-*/
-
-
-
-/*
+ 
 
 A Use as few different accounts as possible
 

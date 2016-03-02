@@ -33,7 +33,7 @@ $d = namespace\MYCONST;
 $d = __NAMESPACE__.'\MYCONST';
 
 echo constant($d);
-/*
+ 
 namespace app\a{
 	class one {
 		public static function _1(){
@@ -63,5 +63,5 @@ namespace app\a{
 		}
 	}
 }
-*/
+ 
 
