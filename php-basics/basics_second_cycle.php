@@ -121,8 +121,7 @@ $x == ""
 $x == null
 (int) true is 1, (int) false is 0
 (string) true is "1", (string) false is ""
-
-
+ 
 Compound Data Types
 	Array are containers of ordered data elements
 	Object are containers of both data and code
