@@ -126,6 +126,7 @@ $x == null
 Compound Data Types
 	Array are containers of ordered data elements
 	Object are containers of both data and code
-echo (int) '41sd';
+echo (int) '41sd'; 
+
 
 
