@@ -189,7 +189,7 @@ $x = (bool)" "*(int)(string)12E-1; //1
 /*
 (string)12E-1 == 1.2
 (int) 1.2 == 1
-(bool) "" == 1
+(bool) " " == 1
 => 1*1 == 1 
 A 0
 B 1 CORRETA
