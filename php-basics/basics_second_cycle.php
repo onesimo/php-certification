@@ -214,8 +214,7 @@ if(empty(oneFunction())){
 /*
 Constants
 
-*/
-
+*/ 
 define('EMAIL', 'joao@mail.com');
 define('2EMAIL', 'joao@mail.com'); // invalid name
 const PHONE = 12345; //also you can use const
