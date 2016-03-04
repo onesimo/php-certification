@@ -219,3 +219,117 @@ define('EMAIL', 'joao@mail.com');
 define('2EMAIL', 'joao@mail.com'); // invalid name
 const PHONE = 12345; //also you can use const
  
+
+/*
+Operatos 
+
+Arithmetic Operators
++ Addition 
+- Subtraction
++ Multiplication
+/ Division
+% Modulus 
+Power ** PHP 5.6
+
+Incrementing/Decrementing operators
+
+$a = 1;
+echo $a++; outputs 1, $a is now equal to 2
+echo ++$a; outputs 3, $a is now equal to 3
+echo --$a; output2 2, $a is now equal to 2
+echo $a--; outputs 2, $a is now equal to 1
+
+$a = (int) 'Test'; // $a == 0
+echo ++$a; // outputs  1
+
+String Concatenation Operator
+
+$string = "foo" . "bar"; // = foobar
+String2 = "baz";
+String .= $string2; // outpus foobarbaz // the same of $string = $string . $string2
+
+Bitwise Operators
+To manipulate bits of data.
+Only to work with integer numbers
+
+Simplest bitwise is NOT, ~
+*/
+
+$x = -2;
+echo ~$x; // -1
+
+/*
+
+& AND 
+| OR
+^ bitwise XOR (exclusive OR)
+
+<< Bitwise left shift  - shifts the left-hand operand's bits to the left by a number of positions equal to the right operand, inserting unset bit in the shifted position
+
+>> Bitwise right shift - This operation shifts the left-hand operand's bits to the right by a number of positions equal to the right operand, inserting unset in the shifted positions.
+
+easy way of multiplication
+ 
+#x = 1;
+
+echo $x << 1; //outputs 2
+echo $x << 2; //outputs 4
+
+$x = 8;
+
+echo $x >> 1; //outputs 4
+echo $x >> 2; //outputs 2
+
+
+on a 32-bits machine
+$x = 1;
+echo $x << 32; // 0 
+echo $x 8 pow(2,32); // 4,297,967,296
+
+Assignment Operators
+
+$variable = "value";
+Addition
+$variable = 1; 
+$variable +=3; // contains the integer 4
+
+//In this example
+
+Referencing Variables
+$a = 10;
+$b = $a;
+$b = 20;
+
+echo $a; // outputs 10
+
+By references 
+
+$a = 10;
+$b = &$a;
+$b = 20;
+
+echo $a; // Outputs 20
+
+The assignment operator works by value for all data types excepts objects, which are always passed by refernce, regardless of whether the & operator is used or not.
+
+By-reference activity is often slower that its by-value counterpart, because PHP use a clever "deferred-copy"
+
+Comparasion operators
+The result of a comparison operation is alwways a boolean value.
+
+== equivalence, evaluates to true
+=== Identity, evaluates to true if operands are of the same data type and have the same value
+!= Not equivalent operator
+!== Not-identical operator.
+
+echo $a == 10;
+you could write 
+echo 10 == $a; 
+The parser would have a thrown an error
+
+Inequality Operators
+
+< and <= less than, or less than or equal
+> and >= greater than, greater than or equal to
+
+
