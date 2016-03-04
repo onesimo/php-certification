@@ -125,7 +125,98 @@ $x == null
 Compound Data Types
 	Array are containers of ordered data elements
 	Object are containers of both data and code
-echo (int) '41sd'; 
+	NULL indicates that a variable has no value.
+
+Converting Between Data Types
+
+$d = 10.88;
+echo (int) $x; outputs 10
+
+Variables
+$name = valid
+$1name = invalid
+$_1var = valid
+
+Type casting
+*/
+
+$obj = (Object) ["foo"=> "bar", "baz" => "bat"];
+//var_dump($obj);
+
+$var = '123';
+/*
+intval() cast the given variable to an integer
+floatval() cast the given variable to a float
+strval() cast the given variable to a string
+boolval() cast the given variable to a boolean. Added in PHP 5.5.
+settype() cast the given variable to a given typ
+
+Detecting Types
+is_int() checks for integers
+is_float() checks for floats
+is_string() checks for strings
+is_bool() checks for booleans
+is_null() checks for nulls
+is_array() checks for arrays
+is_object() checks for objects
+
+*/
+
+if(is_numeric($var))
+//echo "sou numerico";
 
 
+/*
+Variable Variables 
+*/
 
+$name = "box";
+$$name = "chair";
+
+//echo $box; // chair
+
+//listing
+$name = "789";  // 123 variable name would normally invalid
+$$name = '456';
+//echo ${'789'}; // finally using curly braces you can output '456'
+
+/*
+Inspectiong Variables
+
+Using print_r();
+Better option var_dump()
+debug_zval_dump()
+*/
+
+//var_export(array(1,2,3,5)); // to create a the same variable value
+
+/*
+Determing if a Variable Exists
+*/
+
+if(isset($name)){ //return true if a variable exists
+	/*do somethin*/
+}else if(!isset($name)){
+	/*this variable does not exists*/
+}
+
+$true = "0";
+if(empty($true)){ //return true if the value is NULL or false, empty string, array, integer 0 and string "0"
+//true
+}
+
+//PHP 5.5 accpet any valid expression
+function oneFunction(){}
+if(empty(oneFunction())){
+  //true
+}
+
+/*
+Constants
+
+*/
+
+define('EMAIL', 'joao@mail.com');
+define('2EMAIL', 'joao@mail.com'); // invalid name
+const PHONE = 12345; //also you can use const
+ 
