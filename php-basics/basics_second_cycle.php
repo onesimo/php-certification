@@ -516,4 +516,37 @@ for ($i = 0; $i < 10; $i++) {
 /*
 
 NAMESPACES
+
+PHP 5.3 added support for namespaces- a way to encapsulate code.
+	AVoid naming collisions
+	Alias to long names
+
+The namespaces must be declared at the top of the file.
+it may only be preceded by the opening tag and declare satament
+*/
+namespaces MyNamespace;
+// code here
+
+//or ,within curly braces
+
+namespaces MyNamespace2{
+	//code here
+}
+
+/*
+You may declare multiple namespace within a single file.
+to place code in the global scope, you use the anonymous namespace, but you must use curly braces
+
+To define a namespaced constant, use the 
+
+const keyword
+
+Sub-Namespaces
+	You can create sub-namespaces by separating identifiers with namespace operator: the blackslash(\)
+
+	namespaces MyNamespaces2\String
+
+	it is not required that all nested namespaces be declared explicity - meaning that you can have Mynamespaces2\String\Tools without ever explicity declaring a MyNamespaces\String namespace
+
+Using Namespaces
 */
