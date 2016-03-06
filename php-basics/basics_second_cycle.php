@@ -256,7 +256,7 @@ Simplest bitwise is NOT, ~
 */
 
 $x = -2;
-echo ~$x; // -1
+//echo ~$x; // -1
 
 /*
 
@@ -331,5 +331,189 @@ Inequality Operators
 
 < and <= less than, or less than or equal
 > and >= greater than, greater than or equal to
+*/
+
+$left = "ABC";
+$right= "ABD";
+
+//echo (int) ($left > $right);
+/*
+The code above echoes 0 (that is, false), because the letter D in $right is higher than the corresponding letter C in $left
+*/
 
 
+$left = "apple";
+$right= "APPLE";
+
+//echo (int) ($left > $right);
+
+/*
+The code above echoes 1 (true) because the ASCII value of the character a(97) is higher than that of the character A(65).
+
+ 
+LOGICAL Operators
+logical operators are used to connect together boolean values and obtain a third boolean value depending on the first two.
+
+The only  unary operator is the logical NOT, identified by a single excamation point that precedes its operand:
+
+	$a = false;
+	echo !$a; outpus 1 (true)
+
+	The thyree binary operators are 
+	
+	&&/and  if both the left and right operand evaluate to true.
+
+	|| / or THe OR operator evaluates to true if either the left or right operand evaluates to true, with the || form being more commonly used.
+
+	XOR The exclusive OR operator evaluates to true if either the left or right operand evaluates to true, but NOT BOTH.
+
+Other Operators
+	
+	error suppression operator @
+	//ignore almost all error messages
+	$x = @fopen ("/tmp/foo");
+	
+	backtick operator
+	execute a shell command, equivalent to calling shell_exec(),
+		
+	$a = `1s -1`;
+
+Procedence adn associativity of each operation
+
+	left  [
+	non-associatiave ++ --
+	non-associatiave ~ - (int) (float) (string) (array) (object) @
+ 	non-associatiave instanceof
+ 	right !
+ 	left * / % **
+ 	left + - 
+ 	left << >>
+ 	non-associative < <= > >=
+ 	non-associative == != === !==
+ 	left &
+ 	left ^
+ 	left !
+ 	left &&
+ 	left ||
+ 	left ?:
+ 	right = += -= *= /= .= %= &= |= ^= <<= >>= **=
+ 	left and
+ 	left xor
+ 	left or
+ 	left , 
+
+Control Structures
+	if-then-else
+	if(expression){
+		
+	}elseif(expression){
+		//note that space between else and if is optinal
+	}else{
+	
+	}
+
+	Nested if-then-else
+
+	if(expression1){
+		if(expression2){
+		
+		}else{
+			
+		}
+	}else{
+		if(expression){
+	
+		}
+	}
+
+	Especial ternary operator
+	
+	echo 10 == $x ? 'Yes' : 'No';
+	
+	With PHP 5.3 ternary operator has become ever shorter
+ */
+	//result of the left-hand expression on true
+$bar = "fa";
+$bat = 123;
+$foo = ($bar)?: $bat; 
+
+//Switch statement
+$a = 0;
+
+switch ($a) {
+
+	case true:
+		//echo 'true';
+		break;
+	case 0:
+		//echo 'false';
+		break;
+	default:
+		//echo "default";
+		break;
+}
+
+//Switch statement with fall-through
+switch ($a) {
+	case (strpos($a, 'bat') !== false):
+		//echo "The value contains bat" . PHP_EOL;
+	case (strpos($a, 'foo') !== false):
+		//echo "The value contains foo" . PHP_EOL;
+	break;
+	case (strpos($a, 'bar') !== false):
+		//echo "The value contains bar" . PHP_EOL;
+	break;
+}
+
+//While and Do loops
+/*
+while ($i < 10) {
+	//echo $i.PHP_EOL;
+	//$i++;
+} 
+$i = 100;
+
+do{
+	//echo $i.PHP_EOL;
+	$i++;
+}while ($i < 10);
+// will be executed at least once
+
+/*
+FOR AND FOREACH encapsulate a while()
+ 
+
+for($x = 0; $x < 10; $x++){
+	//echo $x.PHP_EOL;
+}
+
+// PHP PHP_EOL constant represents the end of the line 
+
+//Breaking and Continuing
+//Optional parameter allows you to exit from multiple nested loops
+/*
+for($i = 0; $i < 10; $i++ ){
+	for($j = 0; $j < 3; $j++){ 
+		if(($j + $i) == 10){
+			//break operator only accepts positive number
+			break 2; 
+			//Exit from his loop and the next outer one
+		}
+	}
+ 
+}
+*/
+//Continue
+// as with break, you can provide it with an integer parameter to specify the level f nesting to which it applies. for example:
+
+for ($i = 0; $i < 10; $i++) {
+	if ($i > 3 && $i < 6) {
+		continue;
+	}
+	//echo $i . PHP_EOL; shows between 0 and 3, and 6 and 9
+}
+
+/*
+
+NAMESPACES
+*/
