@@ -524,15 +524,15 @@ PHP 5.3 added support for namespaces- a way to encapsulate code.
 The namespaces must be declared at the top of the file.
 it may only be preceded by the opening tag and declare satament
 */
-namespaces MyNamespace;
+//	namespace MyNamespace;
 // code here
 
 //or ,within curly braces
-
-namespaces MyNamespace2{
+/*
+namespace MyNamespace2{
 	//code here
 }
-
+*/
 /*
 You may declare multiple namespace within a single file.
 to place code in the global scope, you use the anonymous namespace, but you must use curly braces
@@ -548,5 +548,8 @@ Sub-Namespaces
 
 	it is not required that all nested namespaces be declared explicity - meaning that you can have Mynamespaces2\String\Tools without ever explicity declaring a MyNamespaces\String namespace
 
-Using Namespaces 
+Using Namespaces
+	
+
 */
+
