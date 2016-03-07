@@ -548,7 +548,5 @@ Sub-Namespaces
 
 	it is not required that all nested namespaces be declared explicity - meaning that you can have Mynamespaces2\String\Tools without ever explicity declaring a MyNamespaces\String namespace
 
-Using Namespaces
-
-
+Using Namespaces 
 */
