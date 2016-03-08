@@ -1,0 +1,4 @@
+<?php 
+/*
+Strings and Patterns
+*/
