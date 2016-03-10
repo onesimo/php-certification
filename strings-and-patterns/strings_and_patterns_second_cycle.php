@@ -137,4 +137,4 @@ stristr("Hello My World", 'my'); // outputs "My World"
 strrpos("aaa123123", '123'); // outputs 6
 
 
-
+//Matching Against mask
