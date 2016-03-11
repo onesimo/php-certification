@@ -1,21 +1,11 @@
 <?php  
 /*
-What is the output of this code?
-*/
+Is the Same-Origin Policy enforced by web browser a sufficient safe-guard againt Javascript-based Cross-Site Request Forgery Attack?
+ 
+A Yes 
 
-
-
-/*
-
-A 
-
-B
-
-C
-
-D
-
-E
+B No // correct
+ 
 
 */
 

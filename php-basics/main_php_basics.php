@@ -1,48 +1,40 @@
 <?php
-
-//How is PHP internally programmed?
 /*
-A in PHP
-B in C correta
-C in C++
-D in Perl
-*/
-
-// Embedding PHP
-
-/*There are several optinos to embed PHP code in an HTML document 
-
-* <?php 
-* <?
-* <%
-* <script language="php">
-* <?php
+Embedding PHP
+There are several options to embed PHP code in an HTML document
+<?php
+<?
+<%
+<script language="php">
+<?php
 */
 //Variables 
 
-/*Names 
-*First : a dollar sing
-*Second : a letter or an underscore character 
-*Then (option): letter, digit, underscore 
+/*
+Names
+	First : a dollar sign
+	Second : a letter or an underscore character
+	Then (option): letter, digit, underscore
 */
 //Variables Variables
 
-$d = "abc";
+$d 	 = "abc";
 $abc = "xyz";
 
 //é possível referenciar uma varial com usando $$d ou ${"abc"} ou com $ e colchetes
 //echo $$d; // $d == ${"abc"} == $abc == "xyz"
-/*
-Which of the follwing are valid variable name? (choose three)
 
-A $_a1 correta
-B $_1 correta
-C $1_
-D $$a correta
-Constant
-Identify them with define(name, value)
-Case-sensitive, as are Variables
+/*
+$onesimo = 'false';
+$name = "";
+
+if ($onesimo == true){
+	echo 'vdd '. gettype($onesimo);
+}else{
+	echo 'mentira - '.gettype($onesimo);
+}
 */
+
 
 define('myPHPVER', '5.5.0');
 
@@ -54,30 +46,27 @@ myPHPVER2; // 5.5.0
 MyPHPVER2; // 5.5.0
 
 /*
-What kind of scope do CONSTANTS HAVE?
 
-*they have global scope
-
-*/
 
 /*
 Data Types
 
-String - Integer - float, double, - boolean, arrays, objects, resources, NULL
+String - Integer - float - double - boolean - arrays - objects - resources - NULL
 
-
-Strings 
+Strings
 
 Delimited by single or double magic_quotes_runtime()
 Double quotes offer more options
 */
+
 //Specials characters
 $x = "1\n2\n3";
-//String variables 
+//String variables
 //$x = "1$y2";
 
 //What is the output of the followwing code?
-strlen('1\n2') * strlen("1\n3"); // 12 
+strlen('1\n2') * strlen("1\n3"); // 12
+
 
 //heredoc syntax?
 
@@ -164,7 +153,7 @@ $x .= "11"; // $x == "4711"
 What is the output of the following code 
 */
 $x = "08";  $x +=15;   // = 23 PHP converte a string na operação
-$y = 08; 	$y += "15";// = 15 Oito é octal 
+$y = 018; 	$y += "15";// = 15 Oito é octal
 $z = " 47"; $z += 11;  // = 58 PHP ignora espços
 
 /*
@@ -200,7 +189,7 @@ $x = (bool)" "*(int)(string)12E-1; //1
 /*
 (string)12E-1 == 1.2
 (int) 1.2 == 1
-(bool) "" == 1
+(bool) " " == 1
 => 1*1 == 1 
 A 0
 B 1 CORRETA
@@ -424,13 +413,13 @@ $name = 'tAtIaNa';
 
 switch (strtolower($name)) {
 	case 'tat'.'ia'.'na';
-		echo 'tat';
+		//echo 'tat';
 	case 'angela';
-		echo 'ang';
+		//echo 'ang';
 	case array(1);
-		echo 'Arr';
+		//echo 'Arr';
 	case 'bard';
-		echo 'Bar';
+		//echo 'Bar';
 		break;
 	default:
 		# code...
