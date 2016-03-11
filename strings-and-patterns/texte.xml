@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<livros>
+	<livro publicacao="01/02/2015" paginas="212">
+		<titulo>Melhor livro</titulo>
+		<isbn>978-85-7657-455-54</isbn>
+		<personagens>
+			<personagem>
+				<nome>Joao</nome>
+				<descricao>Inventor de linguagem PJC</descricao>
+			</personagem>
+			<personagem>
+				<nome>Maria</nome>
+				<descricao>Desenvolvedora</descricao>
+			</personagem>
+		</personagens>
+		<enredo>
+ 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo blandit libero sit amet pharetra. Donec id nulla vitae erat imperdiet mollis. Pellentesque in risus nec tortor egestas ultricies. Aenean sollicitudin interdum orci sit amet bibendum. Fusce risus risus, tincidunt at semper vel, tempus eget erat. Sed vitae lorem sit amet nunc bibendum cursus non at neque. Praesent maximus ligula et lorem commodo accumsan. Phasellus fringilla, lectus in sagittis ullamcorper, leo felis pharetra orci, eu vulputate est lectus et arcu. 
+		</enredo>
+	</livro>
+
+</livros>

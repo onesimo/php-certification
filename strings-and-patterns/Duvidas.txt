@@ -1,0 +1,36 @@
+Dúvidas sobre Strings e Patterns? um ano atrás por   Wesley Willians
+ voltar  Responder
+Dúvidas sobre Strings e Patterns?
+
+ voltar  Responder
+ RESPOSTAS 
+
+Re. Dúvidas sobre Strings e Patterns? um ano atrás por   Wesley Willians
+
+Olá Bruno,
+
+Também tem um detalhe que não mencionei no vídeo.
+
+Há espaços na frente do XYZ, essa é a causa principal do warning..
+
+Vou fazer uma errata e regravar isso ASAP =)
+
+Re. Dúvidas sobre Strings e Patterns? um ano atrás por   Bruno Werneck - Suporte
+
+Acabei de testar no PHP versão 5.5.23 e também não gera o parse error que o Quiz #5 disse que geraria.
+
+ 
+
+Re. Dúvidas sobre Strings e Patterns? um ano atrás por   Bruno Werneck - Suporte
+
+No Quiz #25 (página 133), o manual demonstra a impressão de um NOWDOC sem atribuí-lo a uma variável.
+
+No Quiz #5 (página 34), o manual diz que se tentarmos imprimir um HEREDOC sem atribuí-lo a uma variável o PHP geraria um parse error.
+
+No repositório de demonstração abaixo, não consegui reproduzir o Quiz #5, ou seja, não gera o parse error esperado. Não sei dizer se é uma errata no manual ou se é porque minha versão do PHP é a 5.6 (5.6.5). Não testei no PHP 5.5.
+
+https://github.com/brunowerneck/HeredocNowdoc
+
+ 
+
+Um abraço!

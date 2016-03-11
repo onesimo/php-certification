@@ -1,0 +1,9 @@
+<?xml version='1' encoding='UTF-8' ?>
+<Raiz chave="valor">
+	<PrimeiroElemento>
+		Mestre Jedi
+	</PrimeiroElemento>
+	<SegundoElement>
+		o <Negrito>Incrível </Negrito> Padawan
+	</SegundoElement>
+</Raiz>
