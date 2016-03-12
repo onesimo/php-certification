@@ -294,7 +294,142 @@ Quantifiers
 + apper one or more times
 ? zero or one time
 {n,m} at least n times and no more than m
+ 
+
+Greedliness
+/`(.*)`/ will match the blocks individually
+
+Modifiers
+
+i - case insensitive expression
+m - indicates that you are matching against a multi line string
+s - the . (any) metacharacter will also match newlines
+x - ignore regular whispace
+e - only used in preg_replace(), deprecated
+U - inverts the behavior of "greedliness"
+u - theats the patterns and subject as UTF-8
+
+Sub-Expressions
+
+/a(bc.)e/ this will match the letter a, followed by b and c, followed by any character and, finally the letter e.
+
+/a(ac.)+e/ this will match the letter a, followed by the expression bc. repeated one or more times, followed by the letter r.
+
+Matching and extracting Strings 
+*/
+$name = "Davey Shafik";
+
+$regex = "/[a-zA-Z\s]/";
+
+if(preg_match($regex, $name)){
+	//echo "valid";
+}
+
+$regex = '/^(\w+)\s(\w+)/';
+$matches = array();
+
+//the third parameter return all the captured subpatterns in an array
+if(preg_match($regex,$name, $matches)){
+//var_dump($matches); results:
+
+/*array(3) {                  
+  [0]=>                     
+  string(12) "Davey Shafik" 
+  [1]=>                     
+  string(5) "Davey"         
+  [2]=>                     
+  string(6) "Shafik"        
+}                           
+  */                          
+}
+
+//Named Matches
+
+$regex = '/^(?<firstname>\w+)\s(?<lastname>\w+)/';
+
+if(preg_match($regex,$name, $matches)){
+ //var_dump($matches);// results:
+
+/*
+array(5) {
+  [0]=>
+  string(12) "Davey Shafik"
+  ["firstname"]=>
+  string(5) "Davey"
+  [1]=>
+  string(5) "Davey"
+  ["lastname"]=>
+  string(6) "Shafik"
+  [2]=>
+  string(6) "Shafik"
+}*/
+}
+
+$string  = "a1bb b2cc c2dd";
+$regex 	 = "#([abc])\d#";
+$matches = array();
+
+if(preg_match_all($regex, $string, $matches)){
+	//var_dump($matches); //results: 
+/*
+	array(2) {            
+  [0]=>               
+  array(3) {          
+    [0]=>             
+    string(2) "a1"    
+    [1]=>             
+    string(2) "b2"    
+    [2]=>             
+    string(2) "c2"    
+  }                   
+  [1]=>               
+  array(3) {          
+    [0]=>             
+    string(1) "a"     
+    [1]=>             
+    string(1) "b"     
+    [2]=>             
+    string(1) "c"     
+  }                   
+}                     
+*/
+}
+
+// Using PCRE to replace strings
+
+$body  = "[b]Make me Bold![/b]";
+$regex = "@\[b\](.*?)\[/b\]@i";
+$replacement = '<b>$1</b>';
+$body = preg_replace($regex, $replacement, $body);
+
+//echo $body; //results <b>Make me Bold!</b>
 
 
+//Multiple arguments with preg_replace
+
+$subjects['body'] = "[b]Make me Bold[/b]";
+$subjects['subject'] = "[i]Make me italics[/i]";
+
+$reg[] = "@\[b\](.*?)\[/b\]@i";
+$reg[] = "@\[i\](.*?)\[/i\]@i";
+
+$replacement[0] = "<b>$1</b>";
+$replacement[1] = "<i>$1</i>";
+
+$results = preg_replace($regex, $replacement, $subjects);
+
+/* 
+
+var_dump($results);
+
+results:
+
+array(2) {
+  ["body"]=>
+  string(19) "<<>Make me Bold</b>"
+  ["subject"]=>
+  string(22) "[i]Make me italics[/i]"
+}
 
 */
+
