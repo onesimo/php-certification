@@ -89,5 +89,11 @@ var_dump($a !== $b); //True
 
 /*
 The inequality operator only ensures that both arrays contain the same elements with the same keys, whereas the non-indenity operator also verifies their position
+
+
+Array Iteration
 */
+
+
+
 
