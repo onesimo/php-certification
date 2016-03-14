@@ -78,7 +78,7 @@ Array-to-array
 $a = array(1,2,3);
 $b = array(1 => 2, 2 =>3, 0=>1);
 $c = array('a' => 1, 'b' => 2, 'c' => 3);
-
+/*
 var_dump($a == $b); // True
 var_dump($a === $b); // false
 var_dump($a == $c); // False
@@ -87,13 +87,86 @@ var_dump($a === $c); // False
 var_dump($a != $b); //False
 var_dump($a !== $b); //True
 
-/*
+
 The inequality operator only ensures that both arrays contain the same elements with the same keys, whereas the non-indenity operator also verifies their position
 
 
-Array Iteration
+Array Iteration - THe array Pointer
+
+*/
+$array = array('foo' => 'bar', 'baz', 'bat' => 2);
+
+//displayArray($array);
+
+function displayArray($array){
+  reset($array);
+
+  while (key($array) !== null) {
+    echo key($array). " : ".current($array).PHP_EOL;
+    next($array);
+  }
+}
+
+$array  = array (1,2,3);
+end($array);
+
+//Moving pointer back wards
+while (key($array) !== null) {
+  //echo key($array). " : ".current($array).PHP_EOL;
+  prev($array);
+}
+
+/*
+An Easier Way To Iterate
+With foreach
+*/
+$array = array('foo', 'bar', 'baz');
+
+foreach ($array as $key => $value) {
+  //echo "$key: $value ".PHP_EOL;
+}
+
+/*
+Modifying array elements by reference
 */
 
+$array  = array (1,2,3);
 
+foreach ($array as $key => &$value) {
+  $value += 1;
+}
+
+//var_dump($array); // 2,3,4
+
+
+
+$array  = array ('zero','one','two');
+/*
+Beware when modifying array elements by reference
+*/
+
+foreach ($array as &$value) {
+  # code...
+}
+
+foreach ($array as $value) {
+  # code...
+}
+
+print_r($array); // 
+/*
+
+Array
+(
+    [0] => zero
+    [1] => one
+    [2] => one
+)
+this is not a but, there is a logical explanation
+
+- The list construct can also be used with foreach loops 
+
+Passive Iteration
+*/
 
 
