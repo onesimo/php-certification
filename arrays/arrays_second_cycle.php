@@ -470,11 +470,11 @@ $stack = array();
 // array_push() add elements in array
 array_push($stack,'bar', 'baz');
 
-var_dump($stack);
+//var_dump($stack);
 
 //extract the last element
 $last_in = array_pop($stack);
-var_dump($last_in);
+//var_dump($last_in);
 
 /*
 as queue (FIFO)
@@ -483,4 +483,76 @@ add elements at the beginning using array_unshift() and remove them again using 
 
 $queue = array('qux', 'bar', 'too');
 $first_element = array_shift($queue);
+
+/*
 var_dump($queue);
+results:
+array(2) {
+  [0]=>
+  string(3) "bar"
+  [1]=>
+  string(3) "too"
+}
+
+*/
+array_unshift($queue,'first');
+/*
+var_dump($queue);
+
+array(3) {
+  [0]=>
+  string(5) "first"
+  [1]=>
+  string(3) "bar"
+  [2]=>
+  string(3) "too"
+}
+
+SET FUNCTIONALITY
+array_diff() is used to compute the difference between two (or more) arrays
+*/
+$a = array(1,2,3);
+$b = array(1,3,4);
+/*
+var_dump(array_diff($a, $b));
+
+array_diff returns  all the values of $a that do not appear in $b 
+array(1) {
+  [1]=>
+  int(2)
+}
+
+array_diff?() ifnore the keys, based on key-value use array_diff_assoc() instead.
+array_diff_key() to be computed on keys alone,
+Both have user-defined callback versions
+array_diff_uassoc() and array_diff_ukey, respectively
+
+conversely to array_diff(), array_intersect() will compute the intersection between two (or more) arrays:
+*/
+
+$a = array(1,2,3);
+$b = array(1,3,4);
+/*
+var_dump(array_intersect($a, $b));
+array(2) {
+  [0]=>
+  int(1)
+  [2]=>
+  int(3)
+}
+
+array_intersect_key() to compute on key alone
+array_intersect_assoc() based on key-value.
+both have user-defined callbak versions
+array_intersect_ukey and array_intersect_uassoc()
+
+Dereferencing Arrays
+ability to access array members
+
+arrayResults()['position'];
+
+*/
+ 
+$color  = ['blue', 'green', 'yellow'][rand(0,2)];
+
+//print_r($color); 
