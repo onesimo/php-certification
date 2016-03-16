@@ -124,4 +124,47 @@ header("Pragma: Public");
 
 /*
 COOKIES 
+
+function to set cookie
+
+setcookie('hide_menu',"1");
+
+cookie hide_menu, value 1
+
+*/
+setcookie("hide_menu","1",time() +86400);
+
+/*
+This will instruct the browser to (try to) hang on to the cookie for a day;
+
+Arguments you can pass to setcookie() in order
+
+path = the path where the cookie will be accessible
+domain = the domain you can set a cookie, you cannot set the domain to others pages
+secure = only send this cookie when communicating under HTTPS
+
+Acessing Cookie Data
+*/
+if($_COOKIE['hide_menu'] == 1){
+	//hide menu
+}
+
+setcookie('menu[0]',"foo");
+setcookie('menu[1]',"bar");
+setcookie('menu[2]',"bar");
+
+/*
+You will contain an array $_COOKIE
+
+the setting cookies is a two-stage progress:
+first you send the cooke to the client and client sends it back to you at the next request, the $_COOKIE array will not be populate until the next request comes along
+
+A way to delete a cookie
+*/
+setcookie("hide_menu", false, -3000);
+
+
+/*
+SESSIONS
+
 */
