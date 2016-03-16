@@ -123,6 +123,5 @@ header("Cache-Control: Public");
 header("Pragma: Public");
 
 /*
-COOKIES
-
+COOKIES 
 */
