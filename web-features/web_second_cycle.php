@@ -167,4 +167,14 @@ setcookie("hide_menu", false, -3000);
 /*
 SESSIONS
 
+Accession Session Data
+*/
+session_start();
+
+$_SESSION['my_session'] = 0;
+
+/*
+ 
+BUILT-in HTTP Server
+
 */
