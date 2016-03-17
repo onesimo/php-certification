@@ -43,4 +43,18 @@ fwrite($file, $counter);
 
 echo "there has been $counter hits to this site";
 
+
+/*
+
+r  - reading only, places the file pointer at the beginning of the file
+r+ - reading and writing, place the file pointer at the begginning of the file
+w  - writing only, places the file pointer at the beginning of the file and truncate it to zero length.
+a  - writing only, places the file pointer at the end of the file
+a+ - writing and writing, places the file pointer at the end of file
+x  - Creates a new file for writing only
+x+ - Creates a new file for reading and writing
+
+*/
+
+
 ?>
