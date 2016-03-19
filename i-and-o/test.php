@@ -93,3 +93,71 @@ if(!is_dir('new_dir2')){
 }
 
 
+/*
+Controlling File Access
+
+is_dir() checks if the path is a directory 
+is_executable() checks if the path is executable
+is_file() checks if the path exists and is a regular file
+is_link() checks if the path exists and is a symlink
+is_readable() checks if the path exists and is readable
+is_writable() ckecks if the path exists and is writable
+is_uploaded_file() checks if the path is an uploaded file
+
+File permission UNIX sytems can be changed using a number of funcions, includind chmod(), chgrp() and chown. for example
+*/
+
+chmod('file2.txt', 0666);
+
+/*
+
+Simple Network Access
+
+*/
+/*
+$f = fopen('http://www.phparch.com','r');
+$p = '';
+
+if($f){
+	while($s = fread($f, 1000)){
+		$p .= $s;
+	}
+}else{
+	throw new Exception("Error Processing Request", 1);
+	
+}
+*/
+
+/*
+include 'http://www.google.com';
+warning, allw_url_include =0
+allow_url_fopen = 0
+it is possible to disable this function in PHP.in
+
+Stream Contexts 
+
+*/
+
+$http_options = stream_context_create([
+	'http' => [
+		'user_agent' => 'Jhon',
+		'max_redirects' => 3
+	]
+]);
+
+$file = file_get_contents("http://localhost/php-certification/i-and-o/", false, $http_options);
+
+/*
+Avanced Strem Functionality
+
+
+*/
+
+$socket = stream_socket_server("tcp://0.0.0.0:8000");
+while($conn = stream_socket_accept($socket)){
+	fwrite($conn, 'Hello World');
+	fclose($conn);
+}
+fclose($socket);
+
+
