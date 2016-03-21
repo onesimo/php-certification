@@ -39,6 +39,32 @@ $array =  [
 $options = JSON_PRETTY_PRINT | 
 		   JSON_NUMERIC_CHECK | 
 		   JSON_FORCE_OBJECT;
-ECHO "<PRE>";
+/*ECHO "<PRE>";
 echo json_encode($array, $options);  // 
+output:
 
+{
+    "name": "David Smith",
+    "age": 26
+}
+
+Enconding Data
+*/
+class User implements JsonSerializable
+{
+	public $first_name;
+	public $last_name;
+	public $email;
+	public $password;
+
+	function jsonSerializer(){
+		return [
+			"name" => $this->first_name. ' '.$this->last_name,
+			"email_hash" => md5($this->email),
+		];
+	}
+}
+
+/*
+Now, when we call json_encode() on instance of your User class, we get our custom back, given a user instance that looks, like this.
+*/
