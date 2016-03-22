@@ -48,7 +48,7 @@ output:
     "age": 26
 }
 
-Enconding Data
+Enconding Objects
 */
 class User implements JsonSerializable
 {
@@ -57,7 +57,7 @@ class User implements JsonSerializable
 	public $email;
 	public $password;
 
-	function jsonSerializer(){
+	function jsonSerialize(){
 		return [
 			"name" => $this->first_name. ' '.$this->last_name,
 			"email_hash" => md5($this->email),
@@ -68,3 +68,81 @@ class User implements JsonSerializable
 /*
 Now, when we call json_encode() on instance of your User class, we get our custom back, given a user instance that looks, like this.
 */
+
+
+//print_r(json_encode(new User())); //{"name":" ","email_hash":"d41d8cd98f00b204e9800998ecf8427e"}
+
+/*
+Decoding Data
+*/
+
+$json = '{ "name": "Jhon", "age": 25}';
+$data = json_decode($json);
+/*
+var_dump($data);
+outpus:
+object(stdClass)#1 (2) { ["name"]=> string(4) "Jhon" ["age"]=> int(25) }
+
+If you want to force json_encode to return an array, just pass true for the second argument assoc
+*/
+
+$data = json_decode($json, true);
+/*
+outups
+var_dump($data);
+array(2) { ["name"]=> string(4) "Jhon" ["age"]=> int(25) }
+
+Dates and Times
+
+*/
+
+$date = new \DateTime();
+/*echo '<pre>';
+print_r($date);
+
+DateTime Object
+(
+    [date] => 2016-03-22 03:54:18.000000
+    [timezone_type] => 3
+    [timezone] => Europe/Berlin
+)*/
+$date = new \DateTime('now');
+/*echo '<pre>';
+print_r($date);
+DateTime Object
+(
+    [date] => 2016-03-22 03:54:18.000000
+    [timezone_type] => 3
+    [timezone] => Europe/Berlin
+)*/
+
+//current time yesterdat
+$date = new \DateTime('yesterday');
+
+//current time, two days ago
+$date = new \DateTime('-2 days');
+
+//current time, same day last week
+$date = new \DateTime('last week');
+
+//current time, same day 3 weeks ago
+$date = new \DateTime('-3 week');
+
+$timezone = new \DateTimeZone("America/Sao_Paulo");
+
+//Specified timezone
+$date = new \DateTime('3 week ago', $timezone);
+
+
+//changing the current date
+//$date->setDate('2016', '01','01');
+//$date->setTime('01','02','03');
+//$date->setTimestmp(''); unitimstamp
+$date->setTimeZone(new \DateTimeZone("America/Sao_Paulo"));
+
+/*
+Retrieving Date/Time
+*/
+echo '<pre>';
+
+var_dump($date); 
