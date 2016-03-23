@@ -146,3 +146,8 @@ Retrieving Date/Time
 echo '<pre>';
 
 var_dump($date); 
+
+/*
+$date->format() - acceps the same values as the date()
+
+*/
