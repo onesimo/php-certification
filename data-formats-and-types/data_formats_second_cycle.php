@@ -239,10 +239,69 @@ object(DateInterval)#7 (15) {
 
 Extensible Markup Language(XML)
 
+*An XML document can be well-formed an not valid, but it can never be valid and not well-formed.
+
+A well-formed XML document can be as simple as 
+
+<?xml version="1.0"?>
+<message> Hello, World! </message>
+
+
+A valid document xml 
+<?xml version="1.0"?>
+<!DOCTYPE message SYSTEM "message.dtd">
+<message> Hello, World! </message>
+
+
+Procedural Code
+Load an XML string
 
 */
+$xmlstr  = file_get_contents("library.xml");
+$library = simplexml_load_string($xmlstr);
+//Load an XML file
+$library = simplexml_load_file("library.xml");
 
+/*
 
+Object-oriented (OOP) environment
+Load an XML string 
+*/
+$xmlstr  = file_get_contents("library.xml");
+$library = new SimpleXMLElement($xmlstr);
 
+//Load an XML file
+$library = new SimpleXMLElement("library.xml", NULL, true);
+ 
+/*
+Acessing Children Atribute
+*/
+foreach ($library as $book) {	
+/*	echo $book['isbn'] . "\n";
+	echo $book->title . "\n";
+	echo $book->author . "\n";
+	echo $book->publisher . "\n\n";
+*/
+}
 
+/*
+Iterating wit SimpleXML
+SimpleXMLElement::children()
 
+*/
+foreach ($library->children() as $child) {
+	//echo $child->getName(). ": \n";
+
+	//Get attributes of this element
+	foreach ($child->attributes() as $attr) {
+		//echo ' '.$attr->getName(). ': '.$attr. "\n";
+	}
+
+	//Get children
+	foreach ($child->children() as $subchild) {
+		//echo ' '.$subchild->getName(). ': '.$subchild. "\n";
+	}
+}
+/*
+XPath Queries
+*/
