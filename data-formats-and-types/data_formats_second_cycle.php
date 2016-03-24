@@ -143,11 +143,106 @@ $date->setTimeZone(new \DateTimeZone("America/Sao_Paulo"));
 /*
 Retrieving Date/Time
 */
-echo '<pre>';
-
-var_dump($date); 
 
 /*
 $date->format() - acceps the same values as the date()
+*/
+
+ 
+$date->format('Y-D/m');
+//echo ($date->format('Y-d-m')); //2016-01-03
+
+date(DateTime::ATOM); //2016-03-23T03:44:15+01:00
+date(DateTime::COOKIE); //Wednesday, 23-Mar-2016 03:44:55 CET
+date(DateTime::RSS); //Wed, 23 Mar 2016 03:46:10 +0100
+date(DateTime::W3C); //2016-03-23T03:46:43+01:00
+
+/*
+Handling Custom Format
+*/
+$ambiguousDate = '10/11/12';
+$date = \DateTime::createFromFormat("d/m/y", $ambiguousDate);
+
+/*
+DateTime Comparing 
+*/
+$date = new \DateTime("2014-05-31 1:30pm EST");
+
+$tz = new \DateTimeZone("Europe/Amsterdam");
+$date2 = new \DateTime("2014-05-31 8:30pm", $tz);
+
+if($date == $date2){
+	//echo "these dates are the same date/time"
+}
+
+/*
+DateTime Math
+*/
+$date = new \DateTime();
+//$date->modify("+1 month"); //more one month from now
+/*
+Working with intervals
+$date->add(); $date->sub();
+
+
+$interval = new \DateInterval('PiY3M4DT45M');
+// Add 1 year, 3 mothns, 4 days, 45 minutes
+//$a = $date->add($interval);
+
+// subtract 1 year, 3 mothns, 4 days, 45 minutes
+//$a = $date->sub($interval);
+
+
+/*
+Difference between Dates
+DateTime->diff();
 
 */
+$joao = new \DateTime("1984-05-31 00:00", new \DateTimeZone("Europe/London"));
+$maria = new \DateTime("2014-04-07 00:00", new \DateTimeZone("America/New_York"));
+
+$diff = $joao->diff($maria);
+/*
+var_dump($diff);
+object(DateInterval)#7 (15) {
+  ["y"]=>
+  int(29)
+  ["m"]=>
+  int(10)
+  ["d"]=>
+  int(7)
+  ["h"]=>
+  int(5)
+  ["i"]=>
+  int(0)
+  ["s"]=>
+  int(0)
+  ["weekday"]=>
+  int(0)
+  ["weekday_behavior"]=>
+  int(0)
+  ["first_last_day_of"]=>
+  int(0)
+  ["invert"]=>
+  int(0)
+  ["days"]=>
+  int(10903)
+  ["special_type"]=>
+  int(0)
+  ["special_amount"]=>
+  int(0)
+  ["have_weekday_relative"]=>
+  int(0)
+  ["have_special_relative"]=>
+  int(0)
+}
+
+Extensible Markup Language(XML)
+
+
+*/
+
+
+
+
+
