@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<library>
+	<book isbn="0345342968">
+		<title>Fahrenheit 451</title>
+		<author>R. Bradbury </author>
+		<publisher>Del Rey</publisher>
+	</book>
+	<book isbn="0345342967">
+		<title>1984</title>
+		<author>G. Orwell</author>
+		<publisher>Signet</publisher>
+	</book>
+	<book isbn="0345342966">
+		<title>The Silmarillon</title>
+		<author>J.R.R. Tolkien</author>
+		<publisher>G. Allen &amp; Unwin</publisher>
+	</book>
+	<book isbn="0345342965">
+		<title>Frankenstein</title>
+		<author>M. Shelley</author>
+		<publisher>Bedford</publisher>
+	</book>
+	<book isbn="0345342964">
+		<title>The Moon Is a Harsh Mistress </title>
+		<author>R. A. Heinlein </author>
+		<publisher>Orb</publisher>
+	</book>  
+</library>
