@@ -1,9 +1,8 @@
-<?xml version="1.0" ?>
-<library>
-	<book isbn="0345342968">
+<library xmlns="http://example.org/library" xmlns:meta="http://example.org/book-meta" xmlns:pub="http://example.org/publisher" xmlns:foo="http://example.org/foo">
+	<book meta:isbn="0345342968">
 		<title>Fahrenheit 451</title>
 		<author>R. Bradbury </author>
-		<publisher>Del Rey</publisher>
+		<pub:publisher>Del Rey</pub:publisher>
 	</book>
 	<book isbn="0345342967">
 		<title>1984</title>

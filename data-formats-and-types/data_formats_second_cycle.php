@@ -307,3 +307,151 @@ XPath Queries
 
 
 */
+
+$results = $library->xpath('/library/book/title');
+
+foreach ($results as $title) {
+	//echo 'titulo '.$title.PHP_EOL;
+}
+
+/*
+Adding Children
+*/
+
+$book = $library->addChild('book');
+$book->addAttribute('isbn','00000000001');
+$book->addChild('title',"Ender's Game");
+$book->addChild('author',"Orson Scott Card");
+$book->addChild('publisher',"Tor Science Fiction");
+
+/*
+To romve elements
+*/
+$library->book[0] = null;
+
+//header('Content-type: text/xml');
+//echo $library->asXML();
+
+/*
+Working With Namespaces
+
+Returning document namespaces
+*/
+
+$namespaces = $library->getDocNamespaces();
+foreach ($namespaces as $key => $value) {
+	//echo "{$key} => {$value} \n";
+}
+/*
+ => http://example.org/library
+meta => http://example.org/book-meta
+pub => http://example.org/publisher
+foo => http://example.org/foo
+
+
+Returning Used Namespaces
+*/
+$namespaces = $library->getNamespaces(true);
+foreach ($namespaces as $key => $value) {
+	//echo "{$key} => {$value} \n";
+}
+/*
+λ php data_formats_second_cycle.php
+ => http://example.org/library
+meta => http://example.org/book-meta
+
+
+DOM
+Loading and Saving XML Documents
+
+loading from a file:
+*/
+$dom = new DomDocument();
+$dom->load('library.xml');
+
+/*
+loading from a string
+
+$dom = new DomDocument();
+$dom->loadXML($xml);
+ 
+Listing - Loading XML with DOM
+*/
+$dom = new DomDocument();
+$dom->load('library.xml');
+
+//Do something with our XML here
+//var_dump($dom);
+
+$use_xhtml = false;
+
+if($use_xhtml){
+	$dom->save('library.xml');
+}else{
+	$dom->saveHTMLFile('library.xml');
+}
+
+//output
+if($use_xhtml){
+	//echo $dom->saveXML();
+}else{
+	//echo $dom->saveHTML();
+}
+
+
+/*
+XPath Queries
+*/
+$dom = new DomDocument();
+$dom->load('library.xml');
+
+$xpath = new DomXPath($dom);
+
+$xpath->registerNamespace(
+	"lib", "http://example.org/library"
+	);
+
+$result = $xpath->query("//lib:title/text()");
+
+if($result->length > 0){
+	//Random access
+	$book = $result->item(0);
+	//echo $book->data;
+
+	//sequential access
+	foreach ($result as $book) {
+		//echo $book->data."\r\n";
+	} 
+}
+
+/*
+
+Modifying XML Documents 
+*/
+
+$dom = new DomDocument();
+$dom->load("library.xml");
+
+$book = $dom->createElement("book");
+$book->setAttribute("meta:isbn", '00000002');
+
+$title = $dom->createElement("title");
+$text = $dom->createTextNode("Mastering the SPL library");
+
+$title->appendChild($text);
+$book->appendChild($title);
+
+$author = $dom->createElement("author","Joshua THijssen");
+$book->appendChild($author);
+
+$publisher = $dom->createElement(
+	"pub:publisher", "musketeers.me, LLC."
+	);
+$book->appendChild($publisher);
+
+$dom->documentElement->appendChild($book);
+/*
+header('Content-type: text/xml');
+echo $dom->saveXML();
+//var_dump($dom);
+*/
