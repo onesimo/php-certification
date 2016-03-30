@@ -454,4 +454,172 @@ $dom->documentElement->appendChild($book);
 header('Content-type: text/xml');
 echo $dom->saveXML();
 //var_dump($dom);
+
+Moving data 
 */
+
+$dom = new DomDocument();
+$dom->load("library.xml");
+$xpath = new DomXPath($dom);
+$xpath->registerNamespace(
+	"lib",
+	"http://example.org/library"
+	);
+
+$result = $xpath->query("//lib:book");
+$result->item(1)->parentNode->insertBefore(
+	$result->item(1), $result->item(0)
+	);
+
+$result = $xpath->query("//lib:book");
+$result->item(1)->parentNode->appendChild($result->item(0)
+	);
+
+/*
+Duplicating a node with DOM
+
+*/
+
+$dom = new DomDocument();
+$dom->load("library.xml");
+$xpath = new DomXPath($dom);
+$xpath->registerNamespace(
+	"lib",
+	"http://example.org/library"
+	);
+
+$result = $xpath->query("//lib:book");
+$clone = $result->item(0)->cloneNode();
+$result->item(1)->parentNode->appendChild($clone);
+
+/*
+Moving Data
+*/
+$xml = <<<XML
+<xml>
+	<text> some text here </text>
+</xml>
+XML;
+
+$dom = new DOMDocument();
+$dom->loadXML($xml);
+
+$xpath = new DomXPath($dom);
+
+$node= $xpath->query("//text/text()")->item(0);
+$node->data = ucwords($node->data);
+/*
+output
+<?xml version="1.0"?>
+<xml>
+        <text> Some Text Here </text>
+</xml>
+
+*/
+/*
+Removing Data
+*/
+
+$xml = <<<XML
+<xml>
+	<text type='misc'> some text here </text>
+	<text type='misc'> some more text here </text>
+	<text type='misc'> yet more text here </text>
+
+</xml>
+XML;
+
+$dom = new DOMDocument();
+$dom->loadXML($xml);
+
+$xpath = new DomXPath($dom);
+
+$result = $xpath->query("//text");
+$result->item(0)->parentNode->removeChild($result->item(0));
+$result->item(1)->removeAttribute('type');
+
+$result = $xpath->query('text()', $result->item(2));
+$result->item(0)->deleteData(0, $result->item(0)->length);
+/*
+echo $dom->saveXML();
+output:
+
+λ php data_formats_second_cycle.php
+<?xml version="1.0"?>
+<xml>
+
+        <text> some more text here </text>
+        <text type="misc"></text>
+
+</xml>
+
+Working With Namespaces
+*/
+
+$dom = new DomDocument();
+
+$node = $dom->createElement('ns1:somenode');
+
+$node->setAttribute('ns2:someattribute','somevalue');
+$node2 = $dom->createElement('ns3:anothernode');
+$node->appendChild($node2);
+
+//set xmlns:*attributes
+
+$node->setAttribute('xmlns:ns1','http://example.com/ns1');
+$node->setAttribute('xmlns:ns2','http://example.com/ns2');
+$node->setAttribute('xmlns:ns3','http://example.com/ns3');
+
+$dom->appendChild($node);
+
+$dom->saveXML();
+
+/*
+listin namespaces in DOM
+*/
+
+
+$dom = new DomDocument();
+
+$node = $dom->createElementNS('http://example.com/ns1','ns1:somenode');
+
+$node->setAttributeNS('http://example.com/ns2','ns2:someattribute','somevalue');
+
+$node2 = $dom->createElementNS('http://example.com/ns3','ns3:anothernode');
+
+
+$node3 = $dom->createElementNS('http://example.com/ns1','ns1:anothernode');
+
+$node->appendChild($node2);
+$node->appendChild($node3);
+
+$dom->appendChild($node);
+
+$dom->formatOutput = true;
+/*
+echo $dom->saveXML();
+<?xml version="1.0"?>
+<ns1:somenode xmlns:ns1="http://example.com/ns1" xmlns:ns2="http://example.com/ns2" xmlns:ns3="http://example.com/ns3" ns2:someattribute="somevalue">
+  <ns3:anothernode xmlns:ns3="http://example.com/ns3"/>
+  <ns1:anothernode/>
+</ns1:somenode>
+
+Interfacing with SimpleXML
+
+ 
+$xml = simplexml_load_file('library.xml');
+
+$node = dom_import_simplexml($xml);
+$dom = new DomDocument();
+$dom->importNode($node, true);
+
+$dom->appendChild($node);
+ 
+Listing 
+*/
+
+$dom = new DOMDocument();
+$dom->load('library.xml');
+
+$sxe = simplexml_import_dom($dom);
+echo $sxe->book[0]->title;
