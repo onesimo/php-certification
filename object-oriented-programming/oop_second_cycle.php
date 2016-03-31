@@ -78,3 +78,13 @@ $d->test();//outputs "b::test called"
 /*
 Class Methods and Properties
 */
+
+class myClass2{
+
+	function myfunction(){
+		//somthing here
+	}
+}
+
+$obj = new myClass2();
+$obj->myfunction();
