@@ -456,11 +456,11 @@ $pdo = new PDO_DataStoreAdapter("232");
 
  
 if($pdo instanceof PDO_DataStoreAdapter){
-	echo "$pdo is an instanceof PDO_DataStoreAdapter ";
+	//echo "$pdo is an instanceof PDO_DataStoreAdapter ";
 }
-/*
-Lazy loading 
-__autolod
+/**
+* Lazy loading 
+* __autolod
 */
 
 function __autoload($class){
@@ -471,9 +471,89 @@ $objs = new testeC();
 Fatal error: require_once(): Failed opening required 'testeC.php' 
 
 SPL
+
+if one fails to load a class, the next one in the chain is called
 */
 
 spl_autoload_register('spl_autoload');
 if(function_exists('__autoload')){
 	spl_autoload_register('__autoload');
 }
+
+/*
+Reflection
+
+Listing - using reflection
+*/
+
+/**
+*
+* Say Hello
+* @param string $to
+*/
+
+function hello($to = "world"){
+	echo "hello $to";
+}
+
+//$funcs = get_defined_functions();
+
+echo "<h1>Documentation</h1>";
+
+
+/**
+*
+* sky
+* @param string $to
+*/
+
+function sky($bar, $baz = array()){}
+
+$funcs = get_defined_functions();
+
+
+foreach ($funcs['user'] as $func) {
+	try{
+		$func = new ReflectionFunction($func);
+	}catch(ReflectionException $e){
+
+	}
+
+	$prototype = $func->name . ' ( ';
+	$args = array();
+
+	foreach ($func->getParameters() as $param) {
+		$args = '';
+
+		if($param->isPassedByReference()){
+			$arg= '&';
+		} else
+		if($param->isOptional()){
+			print_r($param->getDefaultValue());
+			$arg = '['.$param->getName(). ' = '.$param->getDefaultValue(). ']';
+		} else {
+			$arg = $param->getName();
+		}
+
+		$args[] = $arg;
+	}
+
+	$prototype .= implode(", ", $args). ' )';
+
+ 
+
+echo "<h2>$prototype</h2>";
+echo <<<TEXT
+comment: 
+<pre> {$func->getDocComment()} <pre>
+<p>
+file: {$func->getFileName()} <br>
+Lines: {$func->getStartLine()}  -  {$func->getEndLine()}
+</p>
+TEXT;
+
+}
+
+/*
+Using reflections with classes
+*/
