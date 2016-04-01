@@ -30,7 +30,7 @@ $cloneClass= clone $myClassInstance; /*copy of an object*/
 
 /*
 Listing Class Inheritance: 
-*/
+
 
 
 class a{
@@ -68,7 +68,7 @@ $a = new a();
 $b = new b();
 $c = new c();
 $d = new d();
-/*
+ 
 $a->test();//outputs "a::test called"
 $b->test();//outputs "b::test called"
 $b->func();//outputs "a::func called"
@@ -232,7 +232,7 @@ Constants Static Methods and Properties
 
 listing. Static properties
 */
-class foo{
+class way{
 
 	static $bar = 'bat';
 
@@ -241,5 +241,239 @@ class foo{
 	}
 }
 
-$foo = new foo();
-$foo::baz();
+$foo = new way();
+/*
+$foo->baz();
+echo $foo->bar;
+//echo $foo::bar;
+Notice: Undefined property: way::$bar in D:\xampp\htdocs\php-certification\object-oriented-programming\oop_second_cycle.php on line 246
+
+corret way to call
+
+way::baz();
+echo way::$bar;
+
+Dynamic calling
+
+$var = 'bar';
+echo way::$$var;
+
+$className='way';
+$className::baz();
+echo $className::$bar;
+
+
+$method = 'baz';
+way::$method();
+way::{$method}();
+
+Self and Late Static Binding
+ 
+class a{
+
+	static function test(){
+		self::foo();
+		self::bar();
+	}
+
+	static function  foo(){
+		echo __METHOD__. " called \n";
+	}
+	static function  bar(){
+		echo __METHOD__. " called \n";
+	}
+}
+
+class b extends a{ }
+
+class c extends a {
+	public static function foo(){
+		echo __METHOD__. " called \n";
+	}
+
+
+	public static function bar(){
+		echo __METHOD__. " called \n";
+	}
+}
+
+a::test();
+
+a::foo called
+a::bar called
+ 
+b::test();
+ 
+a::foo called
+a::bar called
+ 
+ c::test();
+ 
+a::foo called
+a::bar called
+*/
+
+
+class a{
+
+	static function test(){
+		static::foo();
+		static::bar();
+	}
+
+	static function  foo(){
+		echo __METHOD__. " called \n";
+	}
+	private static function  bar(){
+		echo __METHOD__. " called \n";
+	}
+}
+
+class b extends a{ }
+
+class c extends a {
+	public static function foo(){
+		echo __METHOD__. " called \n";
+	}
+
+
+	private static function bar(){
+		echo __METHOD__. " called \n";
+	}
+}
+ /* 
+ a::test();
+ b::test();
+ c::test();
+
+ a::foo called
+a::bar called
+a::foo called
+a::bar called
+c::foo called
+
+Fatal error: Call to private method c::bar() from context 'a' in D:\xampp\htdocs\php-certification\object-oriented-programming\oop_second_cycle.php on line 321
+
+
+Class Constatnts
+*/
+
+class foolish{
+	const YOUNG = 'Hello World';
+}
+
+//echo foolish::YOUNG;
+/*
+Interfaces and Abstract Classes
+*/
+
+abstract class DataSore_Adapter{
+	private $id;
+
+	abstract function insert();
+	abstract function update();
+
+	public function save(){
+		if(!is_null($this->id)){
+			$this->update();
+		} else {
+			$this->insert();
+		}
+	}
+}
+
+class PDO_DataStoreAdapter extends DataSore_Adapter{
+
+	public function __construct($dsn){
+
+	}
+
+	public function __toString(){
+		return  'class PDO_DataStoreAdapter';
+	}
+
+	function insert(){
+
+	}
+
+	function update(){
+
+	}
+}
+
+/*
+You MUST declare a classs as abstract so long as it has (or inherits without providing a body) at least on abstract method.
+
+
+Interfaces
+*/
+
+interface DataSore_Adapter_interface{
+
+	public function insert();
+	public function update();
+	public function save();
+	public function newRecord($name = null);
+ 
+}
+
+class PDO_DataStoreAdapter2 implements DataSore_Adapter_interface{
+
+	public function __construct($dsn){
+
+	}
+
+	function insert(){
+
+	}
+
+	function update(){
+
+	}
+	function save(){
+
+	}
+	function newRecord($name = null){
+
+	}
+}
+
+/*
+All the interface's methods and parameters MUST be redeclared
+if you fail to declare it, you will see a fatal error
+
+- it is possible to implement more than one interface in the same class
+
+remember - a class can only extend one parent class, but it can implement multiple interface
+
+
+Determing an Object's Class
+
+instanceof
+*/
+
+$pdo = new PDO_DataStoreAdapter("232");
+
+ 
+if($pdo instanceof PDO_DataStoreAdapter){
+	echo "$pdo is an instanceof PDO_DataStoreAdapter ";
+}
+/*
+Lazy loading 
+__autolod
+*/
+
+function __autoload($class){
+	require_once($class.'.php');
+ }
+/*
+$objs = new testeC();
+Fatal error: require_once(): Failed opening required 'testeC.php' 
+
+SPL
+*/
+
+spl_autoload_register('spl_autoload');
+if(function_exists('__autoload')){
+	spl_autoload_register('__autoload');
+}
