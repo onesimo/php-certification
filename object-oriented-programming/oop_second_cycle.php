@@ -229,4 +229,17 @@ class goal{
 
 /*
 Constants Static Methods and Properties
+
+listing. Static properties
 */
+class foo{
+
+	static $bar = 'bat';
+
+	public static function baz(){
+		echo "hello world";
+	}
+}
+
+$foo = new foo();
+$foo::baz();
