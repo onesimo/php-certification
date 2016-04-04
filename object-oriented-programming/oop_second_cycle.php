@@ -625,4 +625,5 @@ file:{$method->getFileName()} <br>
 Lines: {$method->getStartLine()}  -  {$class->getEndLine()}
 </p>
 TEXT;
+
 }
