@@ -559,3 +559,70 @@ Using reflections with classes
 
 
 */
+
+/**
+* Greeting Class
+* 
+* Extends a greeting to someone/thing
+*/
+class Greeting{
+	
+	/**
+	* Say Hello
+	* 
+	* @param
+	*/
+
+	function hello($to = "world"){
+		echo "hello $to";
+	}
+
+
+}
+
+$class = new ReflectionClass("Greeting");
+/*
+echo "<h1>Documentation</h1>";
+
+echo "<h2>{$class->getName()}</h2>";
+echo <<<TEXT
+comment:
+<pre>{$class->getDocComment()} <pre>
+<p>
+file:{$class->getFileName()} <br>
+Lines: {$class->getStartLine()}  -  {$class->getEndLine()}
+</p>
+TEXT;
+*/
+
+foreach ($class->getMethods() as $method) {
+ 
+
+	foreach ($method->getParameters() as $param) {
+		$args = '';
+
+		if($param->isPassedByReference()){
+			$arg= '&';
+		} else
+		if($param->isOptional()){
+			print_r($param->getDefaultValue());
+			$arg = '['.$param->getName(). ' = '.$param->getDefaultValue(). ']';
+		} else {
+			$arg = $param->getName();
+		}
+
+		$args[] = $arg;
+	}
+
+	$prototype .= implode(", ", $args). ' )';
+
+echo <<<TEXT
+<p>
+comment:
+<pre>{$method->getDocComment()} <pre>
+<p>
+file:{$method->getFileName()} <br>
+Lines: {$method->getStartLine()}  -  {$class->getEndLine()}
+</p>
+TEXT;
+}
