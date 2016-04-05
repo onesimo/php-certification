@@ -49,7 +49,7 @@ var_dump($who);
 
 
 Using $this
-
+*/
 class foo{
 
 	public $a = 'me';
@@ -66,10 +66,64 @@ class bar{
 		$func = $foo->getClosure();
 		$obj = $func(); // PHP 5.3: $obj == null
 						// PHP 5.4: $obj == foo, not bar
-		//var_dump($obj); 
+		// var_dump($obj); 
 	}
 }
 
-$new = new bar();
+//$new = new bar();
+/**
+*Chaging $this dynamically
+*
+*
+*/
+
+class Greeter{
+	public function getClosure(){
+		return function(){
+			echo $this->hello;
+			$this->world();
+		};
+	}
+}
+
+class worldGreeter{
+	public $hello = " hello from the other side";
+	
+	private function world(){
+		echo " world";
+	}
+}
+
+/**
+*Using bindTo()
+ 
+
+$greeter = new Greeter();
+$closure = $greeter->getClosure();
+
+$worldGreeter = new worldGreeter();
+
+//Rebind $this to $worldGreeter
+
+We can specifying a class with bindTo() as second argument to bindto()
+
+$newClosure = $closure->bindTo($worldGreeter, 'worldGreeter');
+$newClosure();
+
+
+Using static bind()
+we can also rebind using the static bind() method of the Closure class:
+ 
+$greeter = new Greeter();
+$closure = $greeter->getClosure();
+
+$worldGreeter = new worldGreeter();
+
+//Rebind $this to $worldGreeter
+/*
+We can specifying a class with bindTo() as second argument to bindto()
+ ewClosure = closure::bindTo($closure, $worldGreeter, 'worldGreeter');
+$newClosure();
+*/
 
 ?>
