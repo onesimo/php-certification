@@ -41,17 +41,20 @@ function createGreeter(&$who){
 $who = 'world';
 $greeter = createGreeter($who);
 $who = ucfirst($who);
-
+/*
 $greeter();
 
 var_dump($who);
 
-/*
+
 
 Using $this
-*/
 
 class foo{
+
+	public $a = 'me';
+	public $b = 'you';
+
 	public function getClosure(){
 		return function () { return $this; };
 	}
@@ -62,8 +65,11 @@ class bar{
 		$foo = new foo();
 		$func = $foo->getClosure();
 		$obj = $func(); // PHP 5.3: $obj == null
-						// PHP 5.4: $obj == foo, not bar 
+						// PHP 5.4: $obj == foo, not bar
+		//var_dump($obj); 
 	}
 }
+
+$new = new bar();
 
 ?>
