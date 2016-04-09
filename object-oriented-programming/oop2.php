@@ -27,3 +27,4 @@ namespace Ds;
 class Myclass{
 	use Util\SecureDebugInfo;
 }
+
