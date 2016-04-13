@@ -76,5 +76,4 @@ class EvenMoreNumbers extends MoreNumbers{
 /*
 Trait Requirements
 
-
 */
