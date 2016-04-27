@@ -137,7 +137,6 @@ array(2) {
 Desing Pattern = 
 
 Singleton Pattern
-*/
 
 class DB{
 
@@ -236,10 +235,10 @@ class Registry{
 		}
 	}
 }
-
+/*
 $db = new DB();
 Registry::add($db);
-
+ 
 // Later on 
 
 if(Registry::exists('DB')){
@@ -247,3 +246,66 @@ if(Registry::exists('DB')){
 }else{
 	die(' we lost our database connection somewhere. Bear with us.');
 }
+
+/*
+
+Accessing Objects as Arrays
+
+*/
+
+interface ArrayAccess
+{
+	function offsetSet($offset,$value);
+	function offsetGet($offset);
+	function offsetUnset($offset);
+	function offsetExists($offset);
+
+}
+
+class myArray implements ArrayAccess
+{
+	protected $array = array();
+
+	function offsetSet($offset, $value){
+		if(!is_numeric($offset)){
+			throw new Exception("Invalid key $offset");
+		}
+	}
+
+	function offsetGet($offset){
+		return $this->array[$offset];
+	}
+
+	function offsetUnset($offset){
+		unset($this->array[$offset]);
+	}
+
+	function offsetExists($offset){
+		return array_key_exists($this->array, $offset);
+	}
+}
+
+$obj = new myArray();
+
+//$obj[1]; works
+
+
+$array = array(1, 2, 3, 4);
+
+$obj = new \ArrayObject($array);
+
+/*var_dump($obj);
+object(ArrayObject)#3 (1) {
+  ["storage":"ArrayObject":private]=>
+  array(4) {
+    [0]=>
+    int(1)
+    [1]=>
+    int(2)
+    [2]=>
+    int(3)
+    [3]=>
+    int(4)
+  }
+}
+ */
