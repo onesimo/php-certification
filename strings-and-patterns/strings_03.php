@@ -246,5 +246,80 @@ preg_replace(["/um/","/para/"], "1", $text);//eis 1 texto 1 1 teste
 
 $text = "no dia 12/12 e no dia 11/01";
 
-echo preg_replace('/\/\d{2}/', '${2}', $text);
+preg_replace('/\/\d{2}/', '${2}', $text);
 
+/*
+Questões
+
+Qual é a saida?
+*/
+
+$str = 'abc';
+
+strpos($str,'a'); // 0
+
+if(!strpos($str,'a')){
+	//echo '1'; // correta ou seja não 0 
+}else{
+	//echo '1';
+}
+
+/*
+Qual a principal diferenca entre HEREDOC E NOWDOC?
+
+ - NOWDOC não interpreta variáveis, mas HEREDOC interpreta.
+
+Qual a saida a seguir
+*/
+
+function append($str){
+	$str = $str.'append';
+}
+function prepend(&$str){
+	$str = 'prepend'.$str;
+}
+$string = 'zce';
+append(prepend($string));
+
+//echo $string; // prependzce
+  
+/*
+Qual é a saida gerada pelo código a seguir?
+*/
+$string = '14302';
+$string[$string[2]] = '4';
+$string; //14342
+
+/*
+Qual é o valor da variável $foo após executar o código a seguir?
+
+obs: strpos retornar false se não encontrar nada
+
+strpos - encontra a posicao da primeira ocorrencia
+strrpos - encontra a posicao da ultima ocorrencia 
+verifica tabela  tabela ASCII
+*/
+$foo = strpos("I can see two monkeys",116); 
+ 
+/*
+$foo é igual a 10 porque o 116 representa t na tabela ASCII, t esta na posicao 10
+
+Qual a função para descobrirmos o tamanho de uma string?
+
+- strlen()
+
+Qual o paradrão de expressão reguar utilizado pelo PHP PCRE
+
+
+O que o código a seguir faz?
+*/
+$var = 2;
+str_replace('a','z',$str, $var);
+/*
+substitui a por z e colca a quantidade substições na variavel $var
+
+
+Qual a função para criarmos um array a partir de um string?
+
+R: explode
+*/
