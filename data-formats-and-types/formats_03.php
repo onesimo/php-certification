@@ -52,5 +52,16 @@ SimpleXMLElement Object
                         PHP tags, bitwise      
                                                
 )                                              
+
+echo ($xml->basico->sintaxe); PHP tags, bitwise
+
+DOM - DOCUMENT OBJECT MODEL
 */
-echo ($xml->basico->sintaxe);
+
+$LoadHtml = new DOMDocument();
+/*$LoadHtml->load('/dir/para/arquivo.xml');
+$LoadHtml->loadHTML('/dir/para/arquivo.xml');
+$LoadHtml->loadHTMLFile('/dir/para/arquivo.html');*/
+$LoadHtml->loadXML($xml02);
+
+print_r($LoadHtml);
