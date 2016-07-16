@@ -219,8 +219,186 @@ SOAP - protocolo de troca de mensagens independente de tecnologia
 WSDL - Web Service Description Language
 SOAP utiliza apenas XML
 
+para consumir
+$cliente = new SoapClient('http://servico.com?wsdl');
+
+
+Segundo parametro:
+style - quando não wsdl não é informado
+soap_version - especifica a versão
+compression - permite utilizar compressão nas requisições
+etc...
+
+__getFunctions retorna lista completa dos metodos disponíveis.
+
+$cliente->__getFunctions();
+
+duas formas de chamar metódos
+
+$cliente->meuMetodo(['param1', 'param2']);
+ou
+$parametros = [
+	'param1' => 'valor1',
+	'param2' => 'valor2'
+];
+$cliente->_soapCall('meuMetodo',[$parametros])
+-- é necessário encapsular duas vezes os parametros
+
+Para fornecer o serviço
+
+duas formas de instanciar o servidor
+$servidor = new SoapServer('servico.wsdl');
+$servidor = new SoapServer(null,['uri' => 'http://local/wsdl']);
+
+Class MeuServico{
+	public function ola(){
+	
+	}
+}
+
+$servidor->setClass("MeuServico");
+$servidor->handle();
+
+PHP.INI e SOAP
+
+soap.wsdl_cache_enable=1  // habilita cache soap
+soap.wsdl_cache_dir='/tmp'  //local que a cache sera armazenada
+soap.wsdl_cache_ttl=86400 // quanto utiliza cache no lugar do wsdl
+soap.wsdl_cache_limit= 5 //tamanho maximo do cache
+
+
+REST
+
+Pode utilizar XML ou JSON,
+
+verbos
+	GET - leitura
+	POST - criar novo serviço
+	PUT - atualiza registro
+	PATCH - atualiza apenas uma parte do recurso
+	DELETE - deleta registros
+
+STATUS 
+
+	1XX - informativos
+	2XX - informar sucesso
+	3XX - informar redirecionamento
+	4XX - erros na requisição
+	5XX - erros internos no servidor
+
+REST E PHP
+
+no apache é preciso ativar modo RewriteEngine On
+
+λ curl -X PUT -H "Content-Type: application/x-www-form-urlencoded" -d 'meu_parametro=meu_valor' http://localhost/8989/php-certification/data-formats-and-types/rest.php
+
+
+DATE
+
 */
 
-$cliente = new SoapClient();
+//print date('d/m/Y', time() + 86400); //add um dia na data
+
+$data = new DateTime();
+
+/*
+Constantes para padrões
+
+ATOM 	= 'Y-m-d\TH:I:sP'
+COOKIE  = 'l, d-m-Y H:i:s'
+ISO8601 = 'Y-m-d\TH:i:sO'
+RFC822  = 'D, d M y H:i:s 0'
+RFC850  = 'l. d-m-y H:i:s T'
+RFC1036 = 'D, d M y H:i:s 0'
+RFC1123 = 'D, d M Y H:i:s O'
+RFC2822 = 'D, d M Y H:i:s 0'
+RFC3339 = 'Y-m-d\TH:i:sP'
+RSS = 'D, d M Y H:i:sP'
+W3C = 'Y-m-d\TH:i:sP'
 
 
+Adicionar intervalos 
+*/
+
+$today = new \DateTime('now');
+
+//função add - soma intervalos
+$tomorrow = $today->add(new \DateInterval('P1D'));
+
+/*
+ao usar a função add altera tambem o valor do objeto $today
+
+P = periodo (obrigatorio)
+Y anos
+M Meses
+D dias
+W semanas - convertidas internamentes para dias
+H horas
+M Minutos
+S Segundos
+
+
+DATETIMEIMMUTABLE
+
+Utiliza a Class DateTimeImmutable para não alterar o valor inicial do objeto, a classe tem os mesmos metodos com comportamento diferente do DateTime
+
+
+*/
+$today = new \DateTimeImmutable('2016-07-14');
+$tomorrow = $today->add(new DateInterval('P1D'));
+/*
+Definir data
+
+setDate(1997,1,1) funcao para definir data
+setTime(10,12,12) funcao para definir horas
+
+*/
+
+$birthDay = new DateTime();
+
+$birthDay->setDate(1990,05,26);
+//print $birthDay->format('d/m/Y'); //26/05/1990
+
+$birthDay->setTime(12,05,26);
+//print ' - '.$birthDay->format('h:i:s');  // 12:05:26
+
+/*
+função sub = para subtrair intervalos
+*/
+$birthDay->sub(new DateInterval('P26Y'));
+
+//echo $birthDay->format('d/m/Y'); - 26/05/1964
+
+/*
+modify perfimite modificar datas de diversas formas
+*/
+
+$data = new DateTimeImmutable();
+$ontem = $data->modify('-1 day');
+
+$amanha = $data->modify('+1 day');
+
+/*
+TIME ZONE
+*/
+
+$saoPaulo = new DateTime('now', new DateTimeZone('America/Sao_Paulo'));
+
+$auckland = new DateTime('now', new DateTimeZone('pacific/Auckland'));
+ 
+/*
+Descobrir o TimeZone da instancia
+*/
+
+$saoPaulo->getTimeZone()->getName(); // America/Sao_Paulo
+
+/*
+Se nenhum fuso horario é especificado assume o fuso horario do php.ini
+*/
+
+$meuformato = \DateTime::createFromFormat('d/m/Y', '02/07/2016');
+
+//print $meuformato->format('Y-m-d'); //2016-07-02
+
+
+echo date('F');
