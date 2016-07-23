@@ -111,6 +111,79 @@ call_user_func
 permite callback
 */
 function exibeMsg($nome){
-	print 'hello_'.$nome;
+	//print 'hello_'.$nome;
 }
 call_user_func('exibeMsg','onesimo');
+
+/*
+Closures
+- funções anônimas 
+- geralmente usadas como callback
+- podem ser utilizadas como valores de variáveis
+- Tem seu próprio escopo
+*/
+
+$genMusicais=['pop','rock','blues'];
+
+array_map(function($item){
+	//print $item; // poprockblues
+}, $genMusicais);
+
+$closure = function(){
+	return 'hello';
+};
+
+//echo $closure //hello
+
+function saudacao(){
+	return function(){
+		return 'Bom dia!';
+	};
+}
+
+$closure = saudacao();
+
+/*print_r($closure)
+Closure Object     
+(                  
+)                  ;
+*/
+
+//print $closure(); // bom dia
+
+
+$nome = 'Teste';
+
+$saudacao = function (){
+	//gera um notice - variavel nome fora do escoppo
+	return 'Bom dia' . $nome;
+};
+
+/*print $saudacao();
+
+Notice: Undefined variable: nome in D:\xampp\htdocs\php-certification\functions\functions_03.php on line 158
+Bom dia*/
+
+
+$nome = 'joao';
+
+$saudacao = function () use ($nome){
+	//gera um notice - variavel nome fora do escoppo
+	return 'Bom dia ' . $nome;
+};
+
+/*
+print $saudacao();
+Bom dia joao
+
+
+Forçando um tipo de valor
+*/
+
+function prepararAlmoco(array $panela, array $ingredientes){
+	foreach ($ingredientes as $ingrediente) {
+		$panela[] = $ingrediente;
+	}
+
+	return $panela;
+}
