@@ -177,11 +177,11 @@ Métodos Mágicos
 Class Pessoa{ 
 
 	function __construct(){
-		print ' construtor '.PHP_EOL;	
+		//print ' construtor '.PHP_EOL;	
 	}
 
 	function __destruct(){
-		print ' destruidor '.PHP_EOL;
+		//print ' destruidor '.PHP_EOL;
 	}
 
 	/*
@@ -198,18 +198,116 @@ Class Pessoa{
 	}
 
 	public function __get($nome){
-		print 'tentando acessar propriedade '.$nome.PHP_EOL;
+		// print 'tentando acessar propriedade '.$nome.PHP_EOL;
 	}
 
 	public function __set($nome, $valor){
-		print 'tentativa de acessar a propriedade '.$nome. ' valor '.$valor.PHP_EOL;
+		// print 'tentativa de acessar a propriedade '.$nome. ' valor '.$valor.PHP_EOL;
 	}
 }
 
 $pessoa = new Pessoa();
 //$pessoa->MetodoInexiste(1,2,3,3);
 
-echo $pessoa->nome;
-$pessoa->nome = 'joao';
+/*
+echo $pessoa->nome; // chama get
+$pessoa->nome = 'joao'; //chama set
+*/
 
-sleep(2);
+//sleep(2);
+
+
+class Colecao{
+	public  $dados = [];
+ 
+	public function __set($nome, $valor){
+		//echo " Atribuindo valor ";
+		$this->dados[$nome] = $valor;
+
+	} 
+
+	/*public function __isset($name){
+		echo "verifica se foi setado ";
+
+		return array_key_exists($name, $this->dados);
+	}*/
+
+	public function __unset($name){
+		echo "remove propriedade se ela existir no array";
+
+		if(array_key_exists($name, $this->dados)){
+			unset($this->dados[$nome]);
+		}
+	}
+
+	function __sleep(){
+		print 'metodo serialize';
+
+		return[];
+	}
+
+	function __wakeup(){
+		print 'metodo unserialize';
+
+		return[];
+	}
+
+	function __toString(){
+		return ' virei string ';
+	}
+
+	function __invoke(){
+		print 'method invoke'.func_get_arg(1);
+	}
+}
+
+$obj = new Colecao;
+
+//$obj(45,454);
+/*
+echo $obj;
+*/
+$obj->a = 1;
+$obj->b = 1;
+
+//echo $dat = serialize($obj); // O:7:"Colecao":0:{}
+
+//unserialize($dat);
+
+//print_r(unserialize($dat));
+
+
+unset($obj->dados['b']);
+//print_r($obj);
+//echo $obj->a;
+//echo $obj->dados['a'];
+
+$propriedade = isset($obj->a);
+/*
+var_dump($propriedade);
+
+
+unset
+clone = clonagem raza ou seja shallow para alterar o comportamento utiliza-se o metodo __clone ( clona outros objetos que estão instanciados dentro da classe clonada)
+
+
+Exceções TRY/CATCH
+*/
+
+function nM($a=0, $b =0){
+	if($a > $b){
+		throw new Exception("o primeiro e maior");
+		
+	}
+
+	if($a === $b){
+		throw new InvalidArgumentException("São Iguais");
+		
+	}
+}
+
+try{
+	nM(2,2);
+} catch(Exception $exec){
+	print $exec->getMessage();
+}
