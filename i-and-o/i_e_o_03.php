@@ -111,6 +111,7 @@ Qual erro ocorre quando utiliza a funcao fwrite para um arquivo com permissão a
 R: será retornado um booleano FALSE
 
 Preencha o espaço em branco com uma funcao
+R: readdir
 
 $dh = opendir(".");
 
@@ -123,5 +124,48 @@ while($file = ___ ($dh)){
 $dh = opendir(".");
 
 while($file = readdir($dh)){
-	echo $file.PHP_EOL;
+	//echo $file.PHP_EOL;
 }
+/*
+Qual das opções não é um input ou output padrão no PHP?
+
+a php://stdin
+b php://stdou
+c php://sterr // correta
+d php://input
+e php://output
+f php://error
+
+Qual das seguintes funções não aceita um paramentro de contexto?
+
+a fopen
+b fgets correta
+c file_get_contents
+d file
+
+Qual o nome da classe que devemos estender para criar um wrapper?
+
+R: streamWrapper
+
+Qual dos seguintes itens não é wrpper utilizado pelo PHP
+
+a glob
+b php 
+c file
+d zip  // correta
+
+Qual o nome da funcao para listar os filtros disponiveis no stream?
+
+stream_get_filters()
+
+Escreva o wrapper que utilizamos para manipultar strings críptografadas com o base64.
+
+R: data
+
+Quais das funções a seguir utiliza o caminho para o arquivo em vez de um resource?
+
+a - file_get_content  // correta
+b - open
+c - fgets
+d - fwrite
+*/

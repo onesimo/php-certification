@@ -292,22 +292,160 @@ clone = clonagem raza ou seja shallow para alterar o comportamento utiliza-se o 
 
 
 Exceções TRY/CATCH
+
+-Será executado o bloco catch pela primeira classe que satisfazer a exceção que foi lançada.
+- Finally sempre sera executado
+-
 */
 
 function nM($a=0, $b =0){
 	if($a > $b){
 		throw new Exception("o primeiro e maior");
-		
 	}
 
 	if($a === $b){
-		throw new InvalidArgumentException("São Iguais");
-		
+		throw new InvalidArgumentException("São Iguais");	
 	}
 }
 
 try{
-	nM(2,2);
-} catch(Exception $exec){
-	print $exec->getMessage();
+	nM(1,2);
+}catch(Exception $exec){
+	print 'generico '.$exec->getMessage();
+}catch(InvalidArgumentException $exec){
+	print 'invalido '.$exec->getMessage();
+}finally{
+	//print 'sempre e executado';
 }
+
+/*
+Criando sua própria Exceção
+*/
+
+
+class NumeroInvalido extends Exception{}
+
+function lancarExcecao($numero){
+	if(!is_numeric($numero)){
+		throw new NumeroInvalido("somente numerico");
+		
+	}
+}
+
+
+try{
+	lancarExcecao(1);
+}catch (NumeroInvalido $execao){
+	print $execao->getMessage();
+}
+
+/*
+Late Static Binding e SELF
+*/
+
+Class A{
+	public static function quem(){
+		print __CLASS__;
+	}
+
+	public static function test(){
+		//self chama da propria classe
+		//static classe pelo qual foi chamado
+		static::quem();
+	}
+}
+
+class B extends A{
+	public static function quem(){
+		echo __CLASS__;
+	}
+}
+
+//echo A::test(); //A
+
+/*
+Quiz
+*/
+
+abstract class myBaseClass{
+	abstract protected function doSomething();
+
+	function threeDots(){
+		return '...';
+	}
+}
+
+class myBaseA extends myBaseClass{
+	protected function doSomething(){
+		echo $this->threeDots();
+	}
+	function methodTest(){
+
+	}
+}
+
+$a = new myBaseA();
+//$a->doSomething();   // FATAL ERROR não é possivel acessar protected 
+
+class Magic{
+	public $a = 'A';
+	protected $b = array("a"=>"A", "b"=>"B", "c"=>"C");
+	protected $c = array(1,2,3);
+
+	public function __get($v){
+		echo "$v,";
+		return $this->b[$v];
+	}
+
+	public function __set($var, $val){
+		echo "$var : $val";
+		$this->$var = $val;
+	}
+}
+
+$m = new Magic();
+/*
+echo $m->a.", ".$m->b. ', '.$m->c.",";
+$m->c = "CC";
+echo $m->a.", ".$m->b. ", ".$m->c;
+
+
+resultado : b,c,A, B, C,c : CCb,c,A, B, C
+
+Qual a relação entre classe e objetos?
+
+A classe é um modelo no qual os objetos serão criados.
+
+Qual a princial diferença entre um método estático e um metodo normal?
+
+R: métodos estáticos não podem  ser declarados dentro dentro de classes
+
+$c = $a->getInstance()->methodTest();
+
+Qual a saida
+
+*/
+
+interface foo{}
+
+//cria alias baseado na classe original
+class_alias('foo','bar');
+
+interface_exists('bar') ? 'yes'  : 'no';
+ 
+/*
+R: yes
+
+
+Qual classe SPL estende o Iterator padrão e permite retornar
+um item específico de uma lista interna da class?
+
+R: RecursiveIterator
+
+Qual metodo é invocado quando um metodo da classe esta inacessivel ou não exite?
+
+R: __call
+*/
+
+
+
