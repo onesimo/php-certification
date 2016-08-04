@@ -213,8 +213,10 @@ FETCH_NUM
 
 
 
-$query = $pdo->prepare('SELECT u.id, u.nome,p.nome, email FROM usuarios as u INNER JOIN permissao as p on p.id = u.id ');
+$query = $pdo->prepare('SELECT u.id, u.nome,p.nome, email 
+	FROM usuarios as u 
+	INNER JOIN permissao as p on p.id = u.id ');
  
 $query->execute();
 
-print_r($query->fetchAll(\PDO::FETCH_NUM));
+//print_r($query->fetchAll(\PDO::FETCH_NUM));
