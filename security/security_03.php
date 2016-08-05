@@ -100,7 +100,6 @@ foreach ($_COOKIE as $key => $ck){
 	//setCookie($key, $ck, time()-3600); 
 }
 
-
 clearstatcache();
 setCookie('livro','certificacao PHP', time()-3600,'/diretorio'); 
 */
@@ -110,18 +109,91 @@ setCookie('livro','certificacao PHP', time()-3600,'/diretorio');
 /*
 
 HTTP
-200 - SUCESSO
-500 - FALHA NO SERVIDOR
-401 - NÃO AUTORIZADO
-3XX - REDIRECIONAMENTO 
+1xx - INFORMACIONAL
+2xx - SUCESSO
+3xx - REDIRECIONAMENTO
+4xx - ERRO NO CLIENTE
+5xx - ERRO NO SERVIOR
 
+header - envia cabeçalho
+header_remove - remove cabeçalho enviado
+headers_list - retorna um array com os cabeçalhos
+headers_sent() - verifica se já foi enviado um cabeçalho 
 */
 
 //header('HTTP/1.0 401 RECORD NOT FOUND');
 
 header('Invalid-Token: meu_token', true, 200);
-header('Content-Type: application/json');
+//header('Content-Type: application/json');
+
+header_remove('Invalid-Token');
 
 print_r(headers_list());
 
+foreach (headers_list() as $value) {
+	//print $value.'<br>';
+}
+
+if(headers_sent()){
+	header('Location: http://www.casadocodigo.com');
+}
+
+/*
+Qual o valor padrão de um cookie de sessão do PHP?
+
+R: Até o navegador ser fechado
+
+Método HTTP é utiliado para upload de arquivos?
+
+R: POST
+*/
+
+session_start();
+
+//echo session_regenerate_id();
+
+if(!array_key_exists('counter', $_SESSION)){
+	$_SESSION['counter'] = 0;
+}else{
+	$_SESSION['counter'] ++;
+}
+
+// session_id(); retorna id da sessão atual 
+
+// session_regenerate_id(); atualiza id da sessao atual PHPSESSID
+
+session_destroy();
+
+/*
+Como inicializar o uso de sessões em PHP automaticamente?
+
+C: Definindo the 'session.start_session' = 1
+
+Função que utilizamos para verificar se algum cabeçalho HTTP já foi enviado?
+
+R: headers_sent()
+
+
+Atributo para enviar arquivos ao servidos definido no formulário
+
+enctype='multipart/form-data'
+*/
+
+
+print_r($_POST['my_account']);
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+
+	</title>
+</head>
+<body>
+		<form method="post">
+			<input type="text" name="my account">
+			<input type="submit" name="submit">
+		</form>
+</body>
+</html>
+
