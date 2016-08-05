@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 
 /*
 session.use_cookies = 1; quando 0 permite visualiza o id da sessão ma URL
@@ -81,14 +81,47 @@ Array
 funcao time() - returana corrent timestamp em unixtojd()
 */
 
-setcookie('livro3','certificacao PHP',time() + 86400,false,false, true, true);
+//setcookie('livro3','certificacao PHP',time() + 86400,false,false, true, true);
+
+ 
+//echo '<pre>';
+//print_r($_COOKIE);
+
+//unset($_COOKIE);
+
+/*
+setrawcookie is exactly
 
 
-echo time();
-
-echo '<pre>';
-print_r($_COOKIE);
 
 
-unset($_COOKIE);
+foreach ($_COOKIE as $key => $ck){
+	echo $key. ' '.$ck.'<br>';
+	//setCookie($key, $ck, time()-3600); 
+}
+
+
+clearstatcache();
+setCookie('livro','certificacao PHP', time()-3600,'/diretorio'); 
+*/
+//unset($_COOKIE);
+
+
+/*
+
+HTTP
+200 - SUCESSO
+500 - FALHA NO SERVIDOR
+401 - NÃO AUTORIZADO
+3XX - REDIRECIONAMENTO 
+
+*/
+
+//header('HTTP/1.0 401 RECORD NOT FOUND');
+
+header('Invalid-Token: meu_token', true, 200);
+header('Content-Type: application/json');
+
+print_r(headers_list());
+
 ?>
