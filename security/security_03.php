@@ -128,7 +128,7 @@ header('Invalid-Token: meu_token', true, 200);
 
 header_remove('Invalid-Token');
 
-print_r(headers_list());
+//print_r(headers_list());
 
 foreach (headers_list() as $value) {
 	//print $value.'<br>';
@@ -146,7 +146,6 @@ R: Até o navegador ser fechado
 Método HTTP é utiliado para upload de arquivos?
 
 R: POST
-*/
 
 session_start();
 
@@ -163,6 +162,7 @@ if(!array_key_exists('counter', $_SESSION)){
 // session_regenerate_id(); atualiza id da sessao atual PHPSESSID
 
 session_destroy();
+*/
 
 /*
 Como inicializar o uso de sessões em PHP automaticamente?
@@ -180,8 +180,9 @@ enctype='multipart/form-data'
 */
 
 
-print_r($_POST['my_account']);
-?>
+//print_r($_POST['my_account']);
+
+/*
 <!DOCTYPE html>
 <html>
 <head>
@@ -196,4 +197,153 @@ print_r($_POST['my_account']);
 		</form>
 </body>
 </html>
+
+
+Ambiente de produção
+
+allow_url_fopon = off
+allow_url_include = off
+Essas diretivas devem ficar off no ambiente de produção
+
+max_execution_time = tempo de execução do script
+max_input_time = tempo máximo para interpretar GET e POST
+
+memory_limit = maximo em bytes que um script pode alocar
+
+upload_max_filesize = memoria disponivel para carregar arquivos
+
+post_max_size = tamanho maximo bytes enviados
+
+max_input_nesting_level = profundidade maxima GET e POST
+
+
+Configuração de ERRO
+
+
+display_erros - determina se erros serão mostrados na tela
+log_errros - determina se erros deverão ser gravados no arquivo de log do servido
+error_reporting = determina o nivel que desejamos que nosso relatório de erros exiba
+
+(error_reporting(-1))  = irá mostar todo tipo de erro possivel
+| ou ^ exceto
+
+*/
+
+error_reporting(-1);
+ini_set('display_errors',1);
+ini_set('display_startup_errors',1);
+
+/*
+Criptografia 
+
+*/
+
+$senha = 'minha_senha';
+
+$md5_senha = md5($senha);
+
+if($md5_senha = md5($senha)){
+	//echo 'senha correta';
+}
+
+/*
+SSL - Secure socket layer, cria um cana criptografado entre o servidor web e o navegador, garantindo que todos os dados transmitidos sejam sigilosos e seguros  entre a sua aplicação e o cliente
+
+SESSÕES E SEGURANÇA
+
+session_regenerate_id = previni fixação de sessão, a cadas requisição enviada no servidor, um novo ID é atribuido a sessão.
+
+
+Tempo para expirara sessão
+
+session.cache_expire = 180 valor padrão no php.in
+
+com a a funcao session_cache_expire() é possivel configurar um novo valor ou exibilo
+
+
+session.use_trans_id = 0, vem desabilitado por padrao, quando o habilitado não permite o usuario gerencie o valor da sessão via URL
+
+echo session_cache_expire();
+
+
+session_cache_expire(50);
+*/
+/*
+Verificação de sessão por IP
+
+*/
+session_start();
+$_SESSION['teste'] = 123;
+ 
+/*print_r($_SERVER['REMOTE_ADDR']); // IP DO USUARIO
+print_r($_SERVER['SERVER_ADDR']); // IP DO SERVIDOR 
+print_r($_SERVER['REQUEST_METHOD']); // METHODO UTILIZADO NA REQUISIÇÃ*/
+
+$cookie = substr((strstr($_SERVER['HTTP_COOKIE'], '=')), 1);
+if($cookie == $_COOKIE['PHPSESSID']){
+	//echo "iguais";
+}
+
+/*
+htmlentities - Converte todos os caracteres aplicaveis em entidades html
+*/
+
+$user 		= htmlentities(filter_input(INPUT_POST,'cpf'));
+$password 	= htmlentities(filter_input(INPUT_POST,'senha'));
+$AccessCode = htmlentities(filter_input(INPUT_POST,'cod_acesso'));
+
+
+//echo htmlspecialchars("<script>alert(document.cookie)</script>");
+
+
+if(!array_key_exists('usuario', $_SESSION)){
+	if($user && $senha) {
+		$userDefault = '321654';
+		$passwordDefault = md5('789456');
+
+		if($user == $userDefault){
+			if(md5($password) == $passwordDefault){
+				$_SESSION['usuario'] = $user;
+
+				echo "hello $user your access code is $AccessCode";
+			}
+		} else {
+			echo "some problem";
+		}
+	}
+
+?>
+
+<html>
+<body>
+<form method='post'>
+cpf:<input type='text' name='cpf'>
+<br>
+senha:<input type='password' name='senha'>
+<br>
+cod<input type='text' name='cod_acesso'>
+<br>
+<input type='submit' name='teste'>
+</form>
+</body>
+</html>
+
+<?php
+
+} else { 
+?>
+
+<html>
+ <body>
+
+ Olá bem vindo <?php echo $_SESSION['usuario']; ?>
+ seu codigo de acesso é <?php echo $AccessCode; ?>
+ 
+ </body>
+ </html>
+
+<?php
+}
+
+
 
