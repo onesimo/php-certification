@@ -395,7 +395,7 @@ $mailFilter = filter_var($email, FILTER_VALIDATE_EMAIL);
 
 /*
 filter_input
-
+O quarto parametro é um array associativo com flags
 INPUT_GET
 INPUT_POST
 INPUT_COOKIE
@@ -403,9 +403,57 @@ INPUT_SERVER
 INPUT_ENV
 INPUT_SESSION 
  
-*/
+FILTER_SANITIZE_SPECIAL_CHARS - remove todos os caracteres especiais da string
 
+*/
 $clean = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
 
+/*
+Password Hashing
+MD5
+*/
 
- 
+$senha = '123456';
+$senhaHash = md5($senha);
+
+if(md5($senha) == $senhaHash){
+	//echo "ok";
+}
+
+
+
+$senha = '123456';
+$senhaHash = sha1($senha);
+
+if(sha1($senha) == $senhaHash){
+	//echo "ok2";
+}
+
+
+//PRINT CRYPT_SALT_LENGTH;
+
+if(CRYPT_STD_DES == 1){
+	//echo 'standard DES: '.crypt('ZCPE', 'ZP');
+}
+
+$senha = crypt('123456', '$2a$07$136...............$');
+$senhaUser = '123456';
+
+if(crypt($senhaUser, $senha) == $senha){
+	//echo 'ok';
+}
+
+/*
+Password Hashing API
+*/
+
+$senha = password_hash('ZCPE', PASSWORD_DEFAULT);
+
+$senha = 'ZCPE';
+$hash = '$2y$10$X4ea.Dj/c9BJ7z4dpdPe1..elHvqJkvG5J8EN6Yo9AEb.PYV.VcZG';
+
+if(password_verify($senha, $hash)){
+	//cho 'ok';
+}
+
+print strlen(sha1('0',true)); // tamanho 20
