@@ -294,7 +294,7 @@ $AccessCode = htmlentities(filter_input(INPUT_POST,'cod_acesso'));
 
 
 //echo htmlspecialchars("<script>alert(document.cookie)</script>");
-
+/*
 
 if(!array_key_exists('usuario', $_SESSION)){
 	if($user && $senha) {
@@ -346,4 +346,66 @@ cod<input type='text' name='cod_acesso'>
 }
 
 
+htmlentities — Converte todos os caracteres aplicáveis em entidades
+ 
+echo "<pre>"; 
 
+echo  htmlentities('https://mail.google.com/', ENT_QUOTES); 
+ 
+Cross Site Request Forgeries
+
+SQL INJECTION
+
+*/
+
+
+$dados = array (
+			'nome' => 'joao',
+			'email'=>'joao@contato.com'
+		);
+
+$campos  = array_keys($dados);
+$valores = array_values($dados);
+
+$sql = "INSERT INTO usuarios (".implode(',',$campos). ") 
+	VALUES ('".str_replace(',',"','",implode(',',$valores))."')";
+
+
+ini_set('display_errors',1); 
+$page = 'phpinfo();';
+ 
+/*
+eval("$page;");
+eval = executa uma string como código PHP
+
+
+INPUT FILTERING
+
+filter var = filtrar dados em nossas aplicações
+terceiro parametro, um array associativo com flags
+
+FILTER_VALIDATE_EMAIL = valida email
+FILTER_VALIDATE_INT = filtra inteiro
+*/
+
+$email = 'onesimobatista@gmail.com';
+
+$mailFilter = filter_var($email, FILTER_VALIDATE_EMAIL);
+
+
+/*
+filter_input
+
+INPUT_GET
+INPUT_POST
+INPUT_COOKIE
+INPUT_SERVER
+INPUT_ENV
+INPUT_SESSION 
+ 
+*/
+
+$clean = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+
+
+ 
