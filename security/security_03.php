@@ -445,8 +445,7 @@ if(crypt($senhaUser, $senha) == $senha){
 
 /*
 Password Hashing API
-*/
-
+*/ 
 $senha = password_hash('ZCPE', PASSWORD_DEFAULT);
 
 $senha = 'ZCPE';
@@ -454,6 +453,5 @@ $hash = '$2y$10$X4ea.Dj/c9BJ7z4dpdPe1..elHvqJkvG5J8EN6Yo9AEb.PYV.VcZG';
 
 if(password_verify($senha, $hash)){
 	//cho 'ok';
-}
-
-print strlen(sha1('0',true)); // tamanho 20
+} 
+//print strlen(sha1('0',true)); // tamanho 20
