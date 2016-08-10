@@ -102,11 +102,29 @@ print_r($array);
 
 Which of the below provided options is correct regarding the below code? 
 
-*/
-
 $a = array (1, 2, 3);
 $b = array (1 => 2, 2 => 3, 0 => 1); 
 $c = array ('a' => 1, 'b' => 2, 'c' => 3);
 var_dump ($a == $b); 
 var_dump ($a === $b); 
 var_dump ($a == $c); 
+
+
+The equivalence operator == returns true if  both arrays have the same number of elements with the same values and keys, regardless of their order. The identity operator ===, on the other hand, returns true only if the array contains the same key/value pairs in the same order 
+
+
+Which one of the following four logical operators of PHP is not binary? 
+
+A AND
+
+B NOT //CORRECT 
+
+C XOR
+
+D OR
+
+Explanation 
+Logical NOT is unary but not binary operator
+
+*/
+
