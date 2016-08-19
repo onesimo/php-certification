@@ -2,7 +2,6 @@
 /*
 echo "1" + 2 **/
 
-
 $str = '////';
 echo count(explode('/', $str));
 
@@ -15,7 +14,7 @@ vsprint('%.2d', 120);
 */
 
 
-function test($var = 4. $var2){
+function test($var = 4, $var2){
 
 	echo $var, $var2;
 }
@@ -304,3 +303,12 @@ $str1 = 'apple';
 $str2 = 'Apple';
 
 echo (int)($str1>$str2);
+/*
+obs: na tabela ASCI as letras maiusculas vem primeiro
+
+A: true
+B: false
+C: 1
+D: 0
+E: null
+*/
