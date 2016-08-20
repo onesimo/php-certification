@@ -49,7 +49,7 @@ what function reads on line out of a file and strip  the html and php tags?
 R: fgetss
 
 
-What is the outp
+What is the output
 */
 
 $a = array(
@@ -58,7 +58,7 @@ $a = array(
 	[1,2,3]
 );
 
-$var = count ($a);  //6
+$var = count ($a  true);  //6
 
 /*
 what is the output 
@@ -74,6 +74,8 @@ echo array_merge($a, $a1)[1];
 
 
 /*
+
+
 convert a JSON content to an object
 
 json_decode($sJson);

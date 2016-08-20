@@ -1,25 +1,8 @@
 <?php
-/*
-$a = $b = 2;
-
-function add($valude){
-	global $a;
-	static $b;
-	$b += $a;
-	global $b;
-	$b++;
-}
-
-add(1);
-add(2);
-
-echo $a . $b;
-*/
+$a1 = ['a','b','c'];
+$a2 = ['s','v','z'];
 
 
-$eis_uma_var = 'teste';
+$b = $a1 + $a2;
 
-
-global $HTTP_POST_VARS;
-
-echo $HTTP_POST_VARS['name'];
+print_r(array_merge($a1,$a2));
