@@ -41,7 +41,7 @@ define('myPHPVER', '5.5.0');
 myPHPVER; // 5.5.0
 //MyPHPVER; //E_NOTICE output: MyPHPVER
 
-define('myPHPVER2', '5.5.0', true); // the terceiro parametro é para utilizar
+define('myPHPVER2', '5.5.0', true); // the terceiro parametro é para utilizar case insensitive
 myPHPVER2; // 5.5.0
 MyPHPVER2; // 5.5.0
 
@@ -77,11 +77,11 @@ $y = <<<ABC
 $x
 ABC;
 
-// Importan: variables and special character work just like double quotes
+//Importan: variables and special character work just like double quotes
 //What is the output of the followwing code?
 $b = "B";
 
-//fechamaento da tag heredco XYZ precisar ser na primeira linha
+//fechamaento da tag heredoc XYZ precisar ser na primeira linha
 /*
 echo <<<XYZ
 a
