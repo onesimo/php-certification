@@ -8,7 +8,6 @@ echo count(explode('/', $str));
 
 /*
 what is the output?
-
 vsprint('%.2d', 120);
 
 */
@@ -21,10 +20,8 @@ function test($var = 4, $var2){
 
 test(null, 2);
 
-/*
 
-What is the output
-*/
+#What is the output?
 
 $a = $b = 2;
 
